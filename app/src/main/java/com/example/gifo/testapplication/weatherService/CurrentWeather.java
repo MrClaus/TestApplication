@@ -10,7 +10,8 @@ public class CurrentWeather {
     private CurrentWeather() {}
 
     public static final CurrentWeather getInstance() {
-        return (instance!=null) ? instance : new CurrentWeather();
+        instance = (instance!=null) ? instance : new CurrentWeather();
+        return instance;
     }
 
     public void setData(String key, String data) {

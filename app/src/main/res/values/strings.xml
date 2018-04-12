@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TestApplication</string>
+    <string name="title_txt">Hello, Gifo!!!</string>
+    <string name="button_red">RED</string>
+    <string name="button_green">GREEN</string>
+    <string name="button_blue">BLUE</string>
+</resources>

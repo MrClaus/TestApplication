@@ -24,7 +24,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     @Override
     protected void attachBaseContext(Context lang) {
         String local = (lang.getSharedPreferences("main", MODE_PRIVATE).getInt("Lang", 0) != 0) ? "ru" : "en";
-        System.out.println("--------------------------------------" + lang.getSharedPreferences("main", MODE_PRIVATE).getInt("Lang", 0));
         super.attachBaseContext(LocalContext.wrap(lang, local));
     }
 
@@ -32,8 +31,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-
-        System.out.println("Create Set-------------------!!!!!!!!!!!!!!");
 
         // Инициализируем объекты Preferences для сохранения и чтения настроек
         appSettings = this.getSharedPreferences("main", Context.MODE_PRIVATE);
@@ -55,8 +52,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             case R.id.button_save_set:
                 if (appSettingsPut != null) appSettingsPut.putInt("Lang", spinner.getSelectedItemPosition());
                 appSettingsPut.apply();
-                System.out.println("--------------GET--------------GET-------------" + spinner.getSelectedItemPosition());
-                System.out.println("-----------------------NEW---------------" + appSettings.getInt("Lang", 0));
                 break;
         }
     }

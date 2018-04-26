@@ -26,9 +26,6 @@ import kotlin.Pair;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Инициализируем объект Preferences для чтения настроек
-    SharedPreferences appSettings;
-
     // Инициализируемые параметры экрана устройства в initDisplayParams()
     private float WIDTH;
     private float HEIGHT;
@@ -131,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(null);
-        appSettings = getSharedPreferences("main", MODE_PRIVATE);
         setContentView(R.layout.activity_main);
         initDisplayParams(this);
 

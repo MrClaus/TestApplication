@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyEmpty</string>
+
+    <string name="button_inf">Информация</string>
+    <string name="button_set">Настройки</string>
+    <string name="button_weather">Погода</string>
+    <string name="button_save">Сохранить настройки</string>
+
+    <string name="lang_name">Системный язык:</string>
+
+    <string name="app_about">Это приложение является тестовым проектом - домашним заданием по учебному курсу андроид!</string>
+
+    <string-array name="select_lang">
+        <item>Английский</item>
+        <item>Русский</item>
+    </string-array>
+</resources>

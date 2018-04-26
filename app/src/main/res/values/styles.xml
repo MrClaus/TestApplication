@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MyTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#FF0000</item>
+        <item name="colorPrimaryDark">#FFAAAA</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="TestStyle">
+        <item name="android:textColor">#CCFFBBBB</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
 </resources>

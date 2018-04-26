@@ -5,7 +5,7 @@ android {
     buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.example.gifo.testapplication"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -27,4 +27,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:27.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+}
+
+dependencies {
+    // Подгружается библиотека для работы с тегом GLRippleView
+    compile 'com.github.r21nomi:glrippleview:1.0.0'
 }

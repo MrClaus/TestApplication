@@ -1,7 +1,17 @@
 <resources>
-    <string name="app_name">TestApplication</string>
-    <string name="title_txt">Hello, Gifo!!!</string>
-    <string name="button_red">RED</string>
-    <string name="button_green">GREEN</string>
-    <string name="button_blue">BLUE</string>
+    <string name="app_name">MyEmpty</string>
+
+    <string name="button_set">Settings</string>
+    <string name="button_inf">About</string>
+    <string name="button_weather">Weather</string>
+    <string name="button_save">Save Settings</string>
+
+    <string name="lang_name">Language:</string>
+
+    <string name="app_about">This Application is a test project for a home task of a learn android course!</string>
+
+    <string-array name="select_lang">
+        <item>English</item>
+        <item>Russian</item>
+    </string-array>
 </resources>

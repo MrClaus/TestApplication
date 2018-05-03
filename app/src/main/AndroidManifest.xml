@@ -10,22 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/MyTheme" >
 
-        <!-- Все активити обязательно должны быть перечислены в манифесте
-             в том числе активити не только нашего приложения,
-             но и которые планируем запускать извне -->
         <activity android:name=".MainActivity" >
-
-            <!-- Так обозначается главный активити, которая открывается при старте на раб. столе-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <activity android:name=".settings.SettingsActivity"
-            android:label="@string/button_set">
+            android:label="@string/settings_activity_name">
         </activity>
 
     </application>

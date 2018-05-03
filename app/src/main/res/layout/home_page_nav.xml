@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Создаём гайдлайны для позиционирования элментов -->
+    
+    <android.support.constraint.Guideline
+        android:id="@+id/home_left_line"
+        style="@style/VerticalLine"
+        app:layout_constraintGuide_percent="0.125"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/home_right_line"
+        style="@style/VerticalLine"
+        app:layout_constraintGuide_percent="0.875"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/home_top_line"
+        style="@style/HorizontalLine"
+        app:layout_constraintGuide_percent="0.08"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/home_medV_line"
+        style="@style/HorizontalLine"
+        app:layout_constraintGuide_percent="0.35"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/home_medH1_line"
+        style="@style/VerticalLine"
+        app:layout_constraintGuide_percent="0.45"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/home_medH2_line"
+        style="@style/VerticalLine"
+        app:layout_constraintGuide_percent="0.55"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/home_bottom_line"
+        style="@style/HorizontalLine"
+        app:layout_constraintGuide_percent="0.9"/>
+
+    <!-- Располагаем элементы в соответствии с гайдлайнами -->
+
+    <View
+        android:id="@+id/but_quad_1"
+        style="@style/NullSizeConstraint"
+        app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+        app:layout_constraintRight_toRightOf="@id/home_medH1_line"
+        app:layout_constraintTop_toTopOf="@id/home_medV_line"
+        app:layout_constraintBottom_toBottomOf="@id/home_bottom_line"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintVertical_bias="0"
+        android:background="#0000FF"/>
+
+    <View
+        android:id="@+id/but_quad_2"
+        style="@style/NullSizeConstraint"
+        app:layout_constraintLeft_toLeftOf="@id/home_medH2_line"
+        app:layout_constraintRight_toRightOf="@id/home_right_line"
+        app:layout_constraintTop_toTopOf="@id/home_medV_line"
+        app:layout_constraintBottom_toBottomOf="@id/home_bottom_line"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintVertical_bias="0"
+        android:background="#FFFF00"/>
+
+    <View
+        android:id="@+id/set_chain_1"
+        style="@style/NullSizeConstraint"
+        app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+        app:layout_constraintRight_toRightOf="@id/home_right_line"
+        app:layout_constraintTop_toBottomOf="@id/but_quad_1"
+        app:layout_constraintBottom_toTopOf="@+id/set_chain_2"
+        app:layout_constraintVertical_weight="0.15"/>
+
+    <View
+        android:id="@+id/set_chain_2"
+        style="@style/NullSizeConstraint"
+        app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+        app:layout_constraintRight_toRightOf="@id/home_right_line"
+        app:layout_constraintTop_toBottomOf="@id/set_chain_1"
+        app:layout_constraintBottom_toBottomOf="@id/home_bottom_line"
+        app:layout_constraintVertical_weight="0.85"
+        android:background="#FF0000"/>
+
+</android.support.constraint.ConstraintLayout>

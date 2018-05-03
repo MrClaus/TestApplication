@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MyEmpty</string>
+    <string name="app_name">My Application</string>
+    <string name="menu_item_refresh">Обновить</string>
+    <string name="menu_item_settings">Настройки</string>
+    <string name="menu_item_exit">Выход</string>
 
     <string name="button_inf">Информация</string>
     <string name="button_set">Настройки</string>
     <string name="button_weather">Погода</string>
     <string name="button_save">Сохранить настройки</string>
 
+    <string name="settings_activity_name">Настройки</string>
     <string name="lang_name">Системный язык:</string>
+    <string name="weather_set">Прогноз погоды:</string>
+    <string name="weather_for_content">Погода на день:</string>
 
     <string name="app_about">Это приложение является тестовым проектом - домашним заданием по учебному курсу андроид!</string>
 
     <string-array name="select_lang">
         <item>Английский</item>
         <item>Русский</item>
+    </string-array>
+
+    <string-array name="select_day">
+        <item>1 День</item>
+        <item>2 Дня</item>
+        <item>3 Дня</item>
     </string-array>
 </resources>

@@ -1,17 +1,29 @@
 <resources>
-    <string name="app_name">MyEmpty</string>
+    <string name="app_name">My Application</string>
+    <string name="menu_item_refresh">Refresh</string>
+    <string name="menu_item_settings">Settings</string>
+    <string name="menu_item_exit">Exit</string>
 
     <string name="button_set">Settings</string>
     <string name="button_inf">About</string>
     <string name="button_weather">Weather</string>
     <string name="button_save">Save Settings</string>
 
+    <string name="settings_activity_name">Settings</string>
     <string name="lang_name">Language:</string>
+    <string name="weather_set">Weather Days:</string>
+    <string name="weather_for_content">Weather:</string>
 
     <string name="app_about">This Application is a test project for a home task of a learn android course!</string>
 
     <string-array name="select_lang">
         <item>English</item>
         <item>Russian</item>
+    </string-array>
+
+    <string-array name="select_day">
+        <item>1 Day</item>
+        <item>2 Days</item>
+        <item>3 Days</item>
     </string-array>
 </resources>

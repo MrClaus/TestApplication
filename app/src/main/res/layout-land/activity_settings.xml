@@ -4,10 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Замена рессурса '@drawable/fone_smooth_land' для альбомной ориентации -->
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/fone_smooth"
+        android:src="@drawable/fone_smooth_land"
         android:scaleType="center"/>
 
     <TextView
@@ -24,11 +26,27 @@
         android:layout_margin="16dp"
         android:layout_toRightOf="@id/set_lang_name"/>
 
+    <TextView
+        android:id="@+id/set_day_count"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/set_lang_name"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:text="@string/weather_set"/>
+
+    <Spinner
+        android:id="@+id/day_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:layout_toRightOf="@id/set_day_count"
+        android:layout_below="@id/lang_spinner"/>
+
     <Button
         android:id="@+id/button_save_set"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/set_lang_name"
+        android:layout_below="@id/set_day_count"
         android:layout_margin="16dp"
         android:text="@string/button_save"
         android:onClick="onClickSave"/>

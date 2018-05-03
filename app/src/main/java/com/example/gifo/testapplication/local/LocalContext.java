@@ -1,11 +1,10 @@
-package com.example.gifo.testapplication;
+package com.example.gifo.testapplication.local;
 
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Configuration;
 import android.os.Build;
-
 import java.util.Locale;
 
 /**

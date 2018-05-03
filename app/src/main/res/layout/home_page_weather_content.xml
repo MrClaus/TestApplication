@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/weather_frame"
+    android:layout_width="200dp"
+    android:layout_height="200dp"
+    android:background="#8800ff00">
+
+    <TextView
+        android:paddingTop="4dp"
+        android:paddingLeft="4dp"
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/weather_for_content"/>
+
+    <TextView
+        android:id="@+id/text_w"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/text_name"
+        app:layout_constraintLeft_toRightOf="@id/text_name"
+        android:text="TEXT2"/>
+
+</android.support.constraint.ConstraintLayout>

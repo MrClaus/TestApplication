@@ -15,9 +15,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="TestStyle">
-        <item name="android:textColor">#CCFFBBBB</item>
-        <item name="android:textSize">20sp</item>
+    <style name="VerticalLine">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="HorizontalLine">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="NullSizeConstraint">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
     </style>
 
 </resources>

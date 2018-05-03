@@ -7,11 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Замена рессурса '@drawable/fone_land' для альбомной ориентации -->
+
     <r21nomi.com.glrippleview.GLRippleView
         android:id="@+id/glRippleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:backgroundImage="@drawable/fone"/>
+        app:backgroundImage="@drawable/fone_land"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"

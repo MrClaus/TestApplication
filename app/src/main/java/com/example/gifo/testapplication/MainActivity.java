@@ -1,14 +1,8 @@
 package com.example.gifo.testapplication;
 
-
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.content.Context;
@@ -18,11 +12,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.WindowManager;
+import com.example.gifo.testapplication.home.HomePagesAdapter;
+import com.example.gifo.testapplication.local.LocalContext;
+import com.example.gifo.testapplication.settings.SettingsActivity;
 import r21nomi.com.glrippleview.AnimationUtil;
 import r21nomi.com.glrippleview.GLRippleView;
 import java.util.Date;
 import kotlin.Pair;
 
+/**
+ * Created by gifo.
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,13 +30,16 @@ public class MainActivity extends AppCompatActivity {
     private float WIDTH;
     private float HEIGHT;
 
+    // Инициализируем объект Preferences для чтения настроек
+    SharedPreferences appSettings;
+
     // Текущее время объекта Date - методы getLastTime, setLastTime, getCurrentTime
     private long currentTimeMs;
 
     // Переменные объекта ViewPager
     ViewPager pager;
     PagerAdapter pagerAdapter;
-    static final int PAGE_COUNT = 2; // количество вкладок ViewPager
+
 
     // Переменные объекта GLRippleView
     volatile GLRippleView glRippleView = null;
@@ -131,12 +134,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initDisplayParams(this);
 
+        // appSettings - объект Preferences для чтения настроек
+        appSettings = this.getSharedPreferences("main", Context.MODE_PRIVATE);
+
         // Инициализируем glRippleView
         glRippleView = findViewById(R.id.glRippleView);
 
-        // Отображаем элемент PageView - скользящие вкладки
+        /** Отображаем домашние страницы HomePages (PageView - скользящие вкладки)
+         *  Первая страница - навигационная (краткая информация о сегодняшней погоде и пользовательские button's)
+         *  Вторая страница - прогноз погоды на N- количество дней (значение N меняется в настройках)
+         */
+        int homePagesCount = 2; // количество страниц элемента HomePages
+        int weatherPages = appSettings.getInt("WeatherDays", 0) + 1; // читаем из настроек количество дней для прогнозного списка
         pager = (ViewPager) findViewById(R.id.pager);
-        pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
+        pagerAdapter = new HomePagesAdapter(homePagesCount, getSupportFragmentManager(), weatherPages);
         pager.setAdapter(pagerAdapter);
     }
 
@@ -159,23 +170,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         glRippleView.onPause();
         super.onStop();
-    }
-
-
-    private class MyFragmentPagerAdapter extends FragmentPagerAdapter {
-
-        public MyFragmentPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return PageFragment.newInstance(position);
-        }
-
-        @Override
-        public int getCount() {
-            return PAGE_COUNT;
-        }
     }
 }

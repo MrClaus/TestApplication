@@ -1,15 +1,31 @@
 package com.example.gifo.testapplication.settings;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.support.v7.widget.AppCompatSpinner;
+
+
+import com.example.gifo.testapplication.MainActivity;
 import com.example.gifo.testapplication.local.LocalContext;
 import com.example.gifo.testapplication.R;
+import com.example.gifo.testapplication.utils.gfx.EffectBlur;
 
 /**
  * Created by gifo on 26.04.2018.
@@ -21,13 +37,60 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     SharedPreferences appSettings;
     SharedPreferences.Editor appSettingsPut = null;
 
-    Spinner spinner, spinnerDay; // Объявляем объект выпадающего списка Spinner
+    AppCompatSpinner spinnerLang, spinnerDay, spinnerTemp; // Объявляем объект выпадающего списка Spinner
+
 
     @Override
     protected void attachBaseContext(Context lang) {
-        String local = (lang.getSharedPreferences("main", MODE_PRIVATE).getInt("Lang", 0) != 0) ? "ru" : "en";
-        super.attachBaseContext(LocalContext.wrap(lang, local));
+        String local = null;
+        switch (lang.getSharedPreferences("main", MODE_PRIVATE).getInt("Lang", 0)) {
+            case 1: local = "en"; break;
+            case 2: local = "ru"; break; }
+        if (local != null) super.attachBaseContext(LocalContext.wrap(lang, local));
+        else super.attachBaseContext(lang);
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Добавляем в приложение Меню из XML-вёрстки(3 вертикальные точки с раскрывающимся списком)
+        getMenuInflater().inflate(R.menu.save_set, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Обрабатываем выбор секций из списка меню
+        int id = item.getItemId();
+        if (id == R.id.action_save) {
+            if (appSettingsPut != null) {
+                appSettingsPut.putInt("Lang", spinnerLang.getSelectedItemPosition());
+                appSettingsPut.putInt("WeatherDays", spinnerDay.getSelectedItemPosition());
+                appSettingsPut.putInt("TemperatureKey", spinnerTemp.getSelectedItemPosition());
+                appSettingsPut.apply();
+            }
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    // Обработка событий нажатия на экшен-бар (стрелка назад)
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+
+    @Override
+    // Переопределяем onBackPressed для добавления анимации перехода активити
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.station, R.anim.transparent_close);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,41 +98,80 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         setTitle(R.string.settings_activity_name);
         setContentView(R.layout.activity_settings);
 
+        // Добавляем и показываем в экшен-баре стрелку 'назад'
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         // Инициализируем объекты Preferences для сохранения и чтения настроек
         appSettings = this.getSharedPreferences("main", Context.MODE_PRIVATE);
         appSettingsPut = appSettings.edit();
 
         // Инициализируем спиннер выбора языка
-        spinner = (Spinner) findViewById(R.id.lang_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.select_lang, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setSelection(appSettings.getInt("Lang", 0));
-        spinner.setOnItemSelectedListener(this);
+        String[] field_lang = getResources().getStringArray(R.array.select_lang);
+        Integer[] icons_lang = { R.mipmap.down_icon, R.mipmap.down_icon2, R.mipmap.down_icon2 };
+        spinnerLang = getSpinnerView(R.id.lang_spinner, field_lang, icons_lang);
+        spinnerLang.setSelection(appSettings.getInt("Lang", 0));
 
         // Инициализируем спиннер выбора прогнозных дней
-        spinnerDay = (Spinner) findViewById(R.id.day_spinner);
-        ArrayAdapter<CharSequence> adapterDay = ArrayAdapter.createFromResource(this,
-                R.array.select_day, android.R.layout.simple_spinner_item);
-        adapterDay.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerDay.setAdapter(adapterDay);
+        String[] field_day = getResources().getStringArray(R.array.select_day);
+        spinnerDay = getSpinnerView(R.id.days_spinner, field_day, null);
         spinnerDay.setSelection(appSettings.getInt("WeatherDays", 0));
-        spinnerDay.setOnItemSelectedListener(this);
+
+        // Инициализируем спиннер выбора прогнозных дней
+        String[] field_temp = getResources().getStringArray(R.array.select_temp);
+        spinnerTemp = getSpinnerView(R.id.temp_spinner, field_temp, null);
+        spinnerTemp.setSelection(appSettings.getInt("TemperatureKey", 0));
+
+        // Добавляем ripple- эффект для следующих buttons
+        addRippleButton(R.id.ripple_lang_settings);
+        addRippleButton(R.id.ripple_favorites_city_settings);
+        addRippleButton(R.id.ripple_days_settings);
+        addRippleButton(R.id.ripple_temp_settings);
+        addRippleButton(R.id.ripple_refresh_settings);
     }
 
-    // Слушатель событий нажатий на Button
-    public void onClickSave(View view) {
+
+    // Добавляем свойство Ripple принимаемому button-у
+    private void addRippleButton(int src) {
+        View button = findViewById(src);
+        int[] attrs = new int[]{R.attr.selectableItemBackground};
+        TypedArray typedArray = this.obtainStyledAttributes(attrs);
+        int backgroundResource = typedArray.getResourceId(0, 0);
+        button.setBackgroundResource(backgroundResource);
+    }
+
+
+    // Слушатель нажатия button текущего layout-а
+    public void onClickButton(View view) {
         switch (view.getId()) {
-            case R.id.button_save_set:
-                if (appSettingsPut != null) {
-                    appSettingsPut.putInt("Lang", spinner.getSelectedItemPosition());
-                    appSettingsPut.putInt("WeatherDays", spinnerDay.getSelectedItemPosition());
-                }
-                appSettingsPut.apply();
+            case R.id.ripple_lang_settings:
+                spinnerLang.performClick();
+                break;
+            case R.id.ripple_favorites_city_settings:
+                Intent intent = new Intent(SettingsActivity.this, FavoritesCityActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.transition_open_goto, R.anim.transition_close_goto);
+                break;
+            case R.id.ripple_days_settings:
+                spinnerDay.performClick();
+                break;
+            case R.id.ripple_temp_settings:
+                spinnerTemp.performClick();
                 break;
         }
     }
+
+
+    // Возвращает объект спиннер по образцу 'fragment_spinner_content'
+    private AppCompatSpinner getSpinnerView(int src, String[] field, Integer[] icons) {
+        AppCompatSpinner spinner = findViewById(src);
+        SpinnerAdapter adapter = new SpinnerAdapter(this, R.layout.fragment_spinner_content,
+                R.layout.fragment_spinner_dropdown, R.id.text, R.id.icon, field, icons);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+        return spinner;
+    }
+
 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) { }
     public void onNothingSelected(AdapterView<?> parent) { }

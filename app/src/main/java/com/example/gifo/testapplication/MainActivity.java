@@ -66,8 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context lang) {
-        String local = (lang.getSharedPreferences("main", MODE_PRIVATE).getInt("Lang", 0) != 0) ? "ru" : "en";
-        super.attachBaseContext(LocalContext.wrap(lang, local));
+        String local = null;
+        switch (lang.getSharedPreferences("main", MODE_PRIVATE).getInt("Lang", 0)) {
+            case 1: local = "en"; break;
+            case 2: local = "ru"; break; }
+        if (local != null) super.attachBaseContext(LocalContext.wrap(lang, local));
+        else super.attachBaseContext(lang);
     }
 
 
@@ -85,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.transparent_open, R.anim.station);
         }
         if (id == R.id.action_exit) finish();
         return super.onOptionsItemSelected(item);

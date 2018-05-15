@@ -5,26 +5,45 @@
     <string name="menu_item_settings">Настройки</string>
     <string name="menu_item_exit">Выход</string>
 
-    <string name="button_inf">Информация</string>
-    <string name="button_set">Настройки</string>
-    <string name="button_weather">Погода</string>
-    <string name="button_save">Сохранить настройки</string>
+    <string name="weather_for_content">Погода:</string>
+
+
+    <!-- Settings Activity strings -->
 
     <string name="settings_activity_name">Настройки</string>
-    <string name="lang_name">Системный язык:</string>
-    <string name="weather_set">Прогноз погоды:</string>
-    <string name="weather_for_content">Погода на день:</string>
-
-    <string name="app_about">Это приложение является тестовым проектом - домашним заданием по учебному курсу андроид!</string>
+    <string name="settings_system">Система</string>
+    <string name="settings_system_setlang">Системный язык</string>
+    <string name="settings_system_setlang_info">Выберите системный язык для интерфейса</string>
+    <string name="settings_service">Сервис</string>
+    <string name="settings_service_setcity">Избранные города</string>
+    <string name="settings_service_setcity_info">Добавьте несколько городов для быстрого получения информации о погоде</string>
+    <string name="settings_service_setdays">Прогноз погоды</string>
+    <string name="settings_service_setdays_info">Выберите количество дней прогноза</string>
+    <string name="settings_service_settemp">Температура</string>
+    <string name="settings_service_settemp_info">Единица измерения температуры</string>
+    <string name="settings_service_setrefresh">Обновление данных</string>
+    <string name="settings_service_setrefresh_info">Обновить данные о погоде при старте приложения</string>
 
     <string-array name="select_lang">
+        <item>Авто</item>
         <item>Английский</item>
         <item>Русский</item>
     </string-array>
 
     <string-array name="select_day">
         <item>1 День</item>
-        <item>2 Дня</item>
         <item>3 Дня</item>
+        <item>5 Дней</item>
     </string-array>
+
+    <string-array name="select_temp">
+        <item>Цельсий</item>
+        <item>Фаренгейт</item>
+    </string-array>
+
+
+    <!-- FavoritesCity Activity strings -->
+
+    <string name="favorites_city_activity_name">Избранные города</string>
+
 </resources>

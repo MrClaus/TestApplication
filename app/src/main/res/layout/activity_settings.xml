@@ -1,52 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+
+    <!-- Фрагмент Blur - бэкграунда -->
+
+    <fragment
+        android:name="com.example.gifo.testapplication.settings.SettingsBackground"
+        android:id="@+id/background_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/fone_smooth"
-        android:scaleType="center"/>
+        android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/set_lang_name"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
-        android:text="@string/lang_name"/>
 
-    <Spinner
-        android:id="@+id/lang_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
-        android:layout_toRightOf="@id/set_lang_name"/>
+    <!-- Контент Настроек -->
 
-    <TextView
-        android:id="@+id/set_day_count"
-        android:layout_width="wrap_content"
-        android:layout_below="@id/set_lang_name"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
-        android:text="@string/weather_set"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Spinner
-        android:id="@+id/day_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
-        android:layout_toRightOf="@id/set_day_count"
-        android:layout_below="@id/lang_spinner"/>
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button_save_set"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/set_day_count"
-        android:layout_margin="16dp"
-        android:text="@string/button_save"
-        android:onClick="onClickSave"/>
 
-</RelativeLayout>
+            <!-- Левый и правый родительские гайдлайны -->
+
+            <android.support.constraint.Guideline
+                android:id="@+id/home_left_line"
+                style="@style/VerticalLine"
+                app:layout_constraintGuide_begin="16dp"/>
+
+            <android.support.constraint.Guideline
+                android:id="@+id/home_right_line"
+                style="@style/VerticalLine"
+                app:layout_constraintGuide_end="16dp"/>
+
+
+            <!-- Пункт 'Системные настройки' настроек -->
+
+            <TextView
+                android:id="@+id/system_name"
+                style="@style/TextSettingsName"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/settings_system"/>
+
+            <!-- Настройка 'Выбор языка' -->
+
+            <TextView
+                android:id="@+id/system_item_lang"
+                style="@style/TextSettingsItem"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintTop_toBottomOf="@id/system_name"
+                android:text="@string/settings_system_setlang"/>
+
+            <TextView
+                android:id="@+id/system_item_lang_info"
+                style="@style/TextSettingsInfo"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintTop_toBottomOf="@id/system_item_lang"
+                android:text="@string/settings_system_setlang_info"/>
+
+            <Spinner
+                android:id="@+id/lang_spinner"
+                style="@style/SpinnerSettings"
+                app:layout_constraintTop_toTopOf="@id/system_item_lang"
+                app:layout_constraintRight_toLeftOf="@+id/ic_lang_spinner"
+                app:layout_constraintVertical_bias="0.5"
+                android:overlapAnchor="false"/>
+
+            <ImageView
+                android:id="@+id/ic_lang_spinner"
+                style="@style/SpinnerSettingsIcon"
+                app:layout_constraintTop_toTopOf="@id/system_item_lang"
+                app:layout_constraintBottom_toBottomOf="@id/system_item_lang"
+                app:layout_constraintRight_toRightOf="@id/home_right_line"/>
+
+            <View
+                android:id="@+id/view_line_one"
+                style="@style/RestrictLineConstraint"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintRight_toRightOf="@id/home_right_line"
+                app:layout_constraintTop_toBottomOf="@id/system_item_lang_info"
+                android:background="#888888"
+                android:alpha="0.5"/>
+
+            <Button
+                android:id="@+id/ripple_lang_settings"
+                style="@style/ButtonRippleConstraint"
+                app:layout_constraintLeft_toLeftOf="@id/view_line_one"
+                app:layout_constraintRight_toRightOf="@id/view_line_one"
+                app:layout_constraintBottom_toBottomOf="@id/view_line_one"
+                app:layout_constraintTop_toBottomOf="@id/system_name"
+                android:layout_marginTop="12dp"
+                android:onClick="onClickButton"/>
+
+
+            <!-- Пункт 'Сервисные настройки' настроек -->
+
+            <TextView
+                android:id="@+id/service_name"
+                style="@style/TextSettingsName"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintTop_toBottomOf="@id/view_line_one"
+                android:text="@string/settings_service"/>
+
+            <!-- Настройка 'Выбор города' -->
+
+            <TextView
+                android:id="@+id/service_item_city"
+                style="@style/TextSettingsItem"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintTop_toBottomOf="@id/service_name"
+                android:text="@string/settings_service_setcity"/>
+
+            <TextView
+                android:id="@+id/service_item_city_info"
+                style="@style/TextSettingsInfo"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintRight_toLeftOf="@+id/service_item_city_goto"
+                app:layout_constraintTop_toBottomOf="@id/service_item_city"
+                android:text="@string/settings_service_setcity_info"/>
+
+            <ImageView
+                android:id="@+id/service_item_city_goto"
+                style="@style/GotoNextPointerConstraint"
+                app:layout_constraintLeft_toRightOf="@id/service_item_city_info"
+                app:layout_constraintRight_toRightOf="@id/home_right_line"
+                app:layout_constraintTop_toTopOf="@id/service_item_city"
+                app:layout_constraintBottom_toBottomOf="@id/service_item_city_info"
+                android:alpha="0.4"/>
+
+            <View
+                android:id="@+id/view_line_two"
+                style="@style/RestrictLineConstraint"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintRight_toRightOf="@id/home_right_line"
+                app:layout_constraintTop_toBottomOf="@id/service_item_city_info"
+                android:background="#888888"
+                android:alpha="0.5"/>
+
+            <Button
+                android:id="@+id/ripple_favorites_city_settings"
+                style="@style/ButtonRippleConstraint"
+                app:layout_constraintLeft_toLeftOf="@id/view_line_two"
+                app:layout_constraintRight_toRightOf="@id/view_line_two"
+                app:layout_constraintBottom_toBottomOf="@id/view_line_two"
+                app:layout_constraintTop_toBottomOf="@id/service_name"
+                android:layout_marginTop="12dp"
+                android:onClick="onClickButton"/>
+
+            <!-- Настройка 'Выбор количества дней прогноза' -->
+
+            <TextView
+                android:id="@+id/service_item_days"
+                style="@style/TextSettingsItem"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintTop_toBottomOf="@id/view_line_two"
+                android:text="@string/settings_service_setdays"/>
+
+            <TextView
+                android:id="@+id/service_item_days_info"
+                style="@style/TextSettingsInfo"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintTop_toBottomOf="@id/service_item_days"
+                android:text="@string/settings_service_setdays_info"/>
+
+            <Spinner
+                android:id="@+id/days_spinner"
+                style="@style/SpinnerSettings"
+                app:layout_constraintTop_toTopOf="@id/service_item_days"
+                app:layout_constraintRight_toLeftOf="@+id/ic_days_spinner"
+                app:layout_constraintVertical_bias="0.5"
+                android:overlapAnchor="false"/>
+
+            <ImageView
+                android:id="@+id/ic_days_spinner"
+                style="@style/SpinnerSettingsIcon"
+                app:layout_constraintTop_toTopOf="@id/service_item_days"
+                app:layout_constraintBottom_toBottomOf="@id/service_item_days"
+                app:layout_constraintRight_toRightOf="@id/home_right_line"/>
+
+            <View
+                android:id="@+id/view_line_tree"
+                style="@style/RestrictLineConstraint"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintRight_toRightOf="@id/home_right_line"
+                app:layout_constraintTop_toBottomOf="@id/service_item_days_info"
+                android:background="#888888"
+                android:alpha="0.5"/>
+
+            <Button
+                android:id="@+id/ripple_days_settings"
+                style="@style/ButtonRippleConstraint"
+                app:layout_constraintLeft_toLeftOf="@id/view_line_tree"
+                app:layout_constraintRight_toRightOf="@id/view_line_tree"
+                app:layout_constraintBottom_toBottomOf="@id/view_line_tree"
+                app:layout_constraintTop_toBottomOf="@id/view_line_two"
+                android:onClick="onClickButton"/>
+
+            <!-- Настройка 'Выбор единицы измерения для температуры' -->
+
+            <TextView
+                android:id="@+id/service_item_temp"
+                style="@style/TextSettingsItem"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintTop_toBottomOf="@id/view_line_tree"
+                android:text="@string/settings_service_settemp"/>
+
+            <TextView
+                android:id="@+id/service_item_temp_info"
+                style="@style/TextSettingsInfo"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintTop_toBottomOf="@id/service_item_temp"
+                android:text="@string/settings_service_settemp_info"/>
+
+            <Spinner
+                android:id="@+id/temp_spinner"
+                style="@style/SpinnerSettings"
+                app:layout_constraintTop_toTopOf="@id/service_item_temp"
+                app:layout_constraintRight_toLeftOf="@+id/ic_temp_spinner"
+                app:layout_constraintVertical_bias="0.5"
+                android:overlapAnchor="false"/>
+
+            <ImageView
+                android:id="@+id/ic_temp_spinner"
+                style="@style/SpinnerSettingsIcon"
+                app:layout_constraintTop_toTopOf="@id/service_item_temp"
+                app:layout_constraintBottom_toBottomOf="@id/service_item_temp"
+                app:layout_constraintRight_toRightOf="@id/home_right_line"/>
+
+            <View
+                android:id="@+id/view_line_four"
+                style="@style/RestrictLineConstraint"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintRight_toRightOf="@id/home_right_line"
+                app:layout_constraintTop_toBottomOf="@id/service_item_temp_info"
+                android:background="#888888"
+                android:alpha="0.5"/>
+
+            <Button
+                android:id="@+id/ripple_temp_settings"
+                style="@style/ButtonRippleConstraint"
+                app:layout_constraintLeft_toLeftOf="@id/view_line_four"
+                app:layout_constraintRight_toRightOf="@id/view_line_four"
+                app:layout_constraintBottom_toBottomOf="@id/view_line_four"
+                app:layout_constraintTop_toBottomOf="@id/view_line_tree"
+                android:onClick="onClickButton"/>
+
+            <!-- Настройка 'Обновлять данные при старте приложения' -->
+
+            <TextView
+                android:id="@+id/service_item_refresh"
+                style="@style/TextSettingsItem"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintTop_toBottomOf="@id/view_line_four"
+                android:text="@string/settings_service_setrefresh"/>
+
+            <TextView
+                android:id="@+id/service_item_refresh_info"
+                style="@style/TextSettingsInfo"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintTop_toBottomOf="@id/service_item_refresh"
+                app:layout_constraintRight_toLeftOf="@+id/check_refresh_settings"
+                android:text="@string/settings_service_setrefresh_info"/>
+
+            <View
+                android:id="@+id/view_line_five"
+                style="@style/RestrictLineConstraint"
+                app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+                app:layout_constraintRight_toRightOf="@id/home_right_line"
+                app:layout_constraintTop_toBottomOf="@id/service_item_refresh_info"
+                android:background="#888888"
+                android:alpha="0.5"/>
+
+            <CheckBox
+                android:id="@+id/check_refresh_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@id/ic_temp_spinner"
+                app:layout_constraintTop_toBottomOf="@id/view_line_four"
+                app:layout_constraintBottom_toTopOf="@id/view_line_five"
+                android:layout_marginRight="0dp"/>
+
+            <Button
+                android:id="@+id/ripple_refresh_settings"
+                style="@style/ButtonRippleConstraint"
+                app:layout_constraintLeft_toLeftOf="@id/view_line_five"
+                app:layout_constraintRight_toRightOf="@id/view_line_five"
+                app:layout_constraintBottom_toBottomOf="@id/view_line_five"
+                app:layout_constraintTop_toBottomOf="@id/view_line_four"
+                android:onClick="onClickButton"/>
+
+
+            <!-- Далее - будут настройки дизайна приложения -->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                app:layout_constraintTop_toBottomOf="@id/ripple_refresh_settings"/>
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>

@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
  * Created by gifo on 02.05.2018.
  */
 
-public class HomePagesAdapter extends FragmentPagerAdapter {
+public class HomePagesAdapter extends FragmentPagerAdapter { // Посмотреть FragmentStatePagerAdapter
 
     public static int pageCount; // количество вкладок HomePages (ViewPager)
     private int weatherDays; // количество дней, для которых составляется прогноз

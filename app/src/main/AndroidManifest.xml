@@ -21,7 +21,7 @@
             android:label="@string/settings_activity_name">
         </activity>
 
-        <activity android:name=".settings.FavoritesCityActivity"
+        <activity android:name=".settings.favcity.FavoritesCityActivity"
             android:label="@string/favorites_city_activity_name">
         </activity>
 

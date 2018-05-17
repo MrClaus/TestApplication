@@ -13,15 +13,15 @@ import android.widget.TextView;
  * I was take as a basis from - https://stackoverflow.com/questions/24422236/
  */
 
-public class SpinnerAdapter extends ArrayAdapter<String> {
+public class SettingsSpinnerAdapter extends ArrayAdapter<String> {
 
     private Context ctx;
     private String[] contentArray;
     private Integer[] imageArray;
     private int templateSource, templateSourceDropDown, textSourceID, imageSourceID;
 
-    public SpinnerAdapter(Context context, int template_src, int template_field_src, int src_textID, int src_imageID,
-                          String[] textField, Integer[] imageField) {
+    public SettingsSpinnerAdapter(Context context, int template_src, int template_field_src, int src_textID, int src_imageID,
+                                  String[] textField, Integer[] imageField) {
         super(context, template_src, src_textID, textField);
         this.ctx = context;
         this.templateSourceDropDown = template_field_src;

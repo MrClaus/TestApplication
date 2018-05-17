@@ -1,4 +1,4 @@
-package com.example.gifo.testapplication.settings;
+package com.example.gifo.testapplication.settings.favcity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -38,7 +38,13 @@ public class FavoritesCityActivity extends AppCompatActivity {
     // Обработка событий нажатия на экшен-бар
     public boolean onSupportNavigateUp() {
         onBackPressed(); // если нажать на стрелку 'назад -> домой'
-        overridePendingTransition(R.anim.transition_open_back, R.anim.transition_close_back);
         return true;
+    }
+
+    @Override
+    // Переопределяем onBackPressed для добавления анимации перехода активити
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.transition_open_back, R.anim.transition_close_back);
     }
 }

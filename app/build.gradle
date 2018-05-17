@@ -34,6 +34,11 @@ dependencies {
 }
 
 dependencies {
-    // Подгружается библиотека для работы с тегом GLRippleView
+    // Добавляем зависимость RecyclerView к проекту
+    compile 'com.android.support:recyclerview-v7:27.0.0'
+}
+
+dependencies {
+    // Подгружаем библиотеку для работы с тегом GLRippleView
     compile 'com.github.r21nomi:glrippleview:1.0.0'
 }

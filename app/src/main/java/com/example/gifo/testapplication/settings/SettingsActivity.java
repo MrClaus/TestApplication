@@ -4,28 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.support.v7.widget.AppCompatSpinner;
+import android.widget.CheckBox;
 
 
-import com.example.gifo.testapplication.MainActivity;
 import com.example.gifo.testapplication.local.LocalContext;
 import com.example.gifo.testapplication.R;
-import com.example.gifo.testapplication.utils.gfx.EffectBlur;
+import com.example.gifo.testapplication.settings.favcity.FavoritesCityActivity;
 
 /**
  * Created by gifo on 26.04.2018.
@@ -38,6 +29,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     SharedPreferences.Editor appSettingsPut = null;
 
     AppCompatSpinner spinnerLang, spinnerDay, spinnerTemp; // Объявляем объект выпадающего списка Spinner
+    CheckBox checkRefreshData; // чекбокс настройки автообновления данных приложения при старте
 
 
     @Override
@@ -122,6 +114,9 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         spinnerTemp = getSpinnerView(R.id.temp_spinner, field_temp, null);
         spinnerTemp.setSelection(appSettings.getInt("TemperatureKey", 0));
 
+        // Инициализируем чекбокс выбора/ отмены выбора подгрузки данных при старте приложения
+        checkRefreshData = findViewById(R.id.check_refresh_settings);
+
         // Добавляем ripple- эффект для следующих buttons
         addRippleButton(R.id.ripple_lang_settings);
         addRippleButton(R.id.ripple_favorites_city_settings);
@@ -158,6 +153,9 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             case R.id.ripple_temp_settings:
                 spinnerTemp.performClick();
                 break;
+            case R.id.ripple_refresh_settings:
+                checkRefreshData.performClick();
+                break;
         }
     }
 
@@ -165,7 +163,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     // Возвращает объект спиннер по образцу 'fragment_spinner_content'
     private AppCompatSpinner getSpinnerView(int src, String[] field, Integer[] icons) {
         AppCompatSpinner spinner = findViewById(src);
-        SpinnerAdapter adapter = new SpinnerAdapter(this, R.layout.fragment_spinner_content,
+        SettingsSpinnerAdapter adapter = new SettingsSpinnerAdapter(this, R.layout.fragment_spinner_content,
                 R.layout.fragment_spinner_dropdown, R.id.text, R.id.icon, field, icons);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);

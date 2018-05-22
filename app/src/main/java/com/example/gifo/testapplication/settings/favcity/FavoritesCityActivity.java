@@ -3,6 +3,8 @@ package com.example.gifo.testapplication.settings.favcity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
 
 import com.example.gifo.testapplication.R;
 import com.example.gifo.testapplication.local.LocalContext;
@@ -11,7 +13,18 @@ import com.example.gifo.testapplication.local.LocalContext;
  * Created by gifo on 08.05.2018.
  */
 
-public class FavoritesCityActivity extends AppCompatActivity {
+public class FavoritesCityActivity
+        extends AppCompatActivity
+        implements FavoritesCityRecyclerView.onSomeEventListener {
+
+    EditText favcityEditText; // текстовое поле ввода
+    private FavoritesCityRecyclerAdapter cityRecyclerAdapter; // адптер FavoritesCityRecyclerAdapter
+
+    // Реализуем метод интерфейса FavoritesCityRecyclerView.onSomeEventListener
+    @Override
+    public void recyclerCityAdapter(FavoritesCityRecyclerAdapter adapter) {
+        cityRecyclerAdapter = adapter;
+    }
 
     @Override
     protected void attachBaseContext(Context lang) {
@@ -32,6 +45,21 @@ public class FavoritesCityActivity extends AppCompatActivity {
         // Добавляем и показываем в экшен-баре стрелку 'назад'
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        // Инициализируем текстовое поле ввода города
+        favcityEditText = findViewById(R.id.edit_favcity_name);
+    }
+
+    public void onClickButton(View view) {
+        switch (view.getId()) {
+
+            // При клике на button(add_favcity) создаём в адаптере списка городов view(новый город)
+            case R.id.add_favcity:
+                String newCity = favcityEditText.getText().toString();
+                if (newCity.trim().length() != 0) cityRecyclerAdapter.addFavcityView(newCity);
+                favcityEditText.getText().clear();
+                break;
+        }
     }
 
     @Override

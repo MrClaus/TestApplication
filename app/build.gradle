@@ -31,14 +31,18 @@ dependencies {
     compile 'com.android.support:appcompat-v7:27.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-}
 
-dependencies {
-    // Добавляем зависимость RecyclerView к проекту
-    compile 'com.android.support:recyclerview-v7:27.0.0'
-}
-
-dependencies {
     // Подгружаем библиотеку для работы с тегом GLRippleView
     compile 'com.github.r21nomi:glrippleview:1.0.0'
+
+    // Добавляем зависимость RecyclerView к проекту
+    compile 'com.android.support:recyclerview-v7:27.0.0'
+
+    // Подгружаем библиотеки Retrofit, Gson
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+
+    // Логгирование запросов/ответов для OkHttp
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
 }

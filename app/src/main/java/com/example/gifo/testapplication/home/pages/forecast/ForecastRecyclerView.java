@@ -21,14 +21,14 @@ public class ForecastRecyclerView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home_page_forecast, container, false);
+        return inflater.inflate(R.layout.fragment_recycler_vertical, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView mRecyclerView = view.findViewById(R.id.forecast_frame_recycler);
+        RecyclerView mRecyclerView = view.findViewById(R.id.recycler_vertical);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 

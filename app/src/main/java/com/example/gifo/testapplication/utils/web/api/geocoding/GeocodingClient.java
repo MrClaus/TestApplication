@@ -11,6 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by gifo on 22.05.2018.
  */
 
+// Создаётся Retrofit-клиент для использования Geocoding API (Google Maps APIs)
 public class GeocodingClient {
 
     private static Retrofit client = null;

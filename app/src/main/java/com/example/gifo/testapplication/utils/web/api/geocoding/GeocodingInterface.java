@@ -15,6 +15,7 @@ public interface GeocodingInterface {
 
     /* Возвращает json-данные геолокации (которую мы ищем по названию 'address')
        и парсит в модель объекта Geolocation */
+
     @GET("json")
     Call<Geolocation> getAddress(@Query("address") String cityName);
 }

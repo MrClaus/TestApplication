@@ -11,6 +11,9 @@ import retrofit2.Response;
  * Created by gifo on 22.05.2018.
  */
 
+/* Класс GeocodingService предоставляет интерфейс Geocoding API для удобного и доступного
+   получения данных с сервера Google Maps о необходимых геолокациях */
+
 public class GeocodingService {
 
     private static GeocodingInterface api = null;
@@ -19,6 +22,7 @@ public class GeocodingService {
         return api;
     }
 
+    // Возвращает объект Geolocation по названию населённого пункта
     public Geolocation getLocation(String locationName) {
         Call<Geolocation> messages = getApi().getAddress(locationName);
         try {

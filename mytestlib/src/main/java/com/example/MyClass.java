@@ -18,8 +18,5 @@ public class MyClass {
             System.out.println(i);
         }
         System.out.println(arr.length);*/
-        ArrayList<String> st;
-        ArrayList<String> sst=st;
-        System.out.println(">>>>"+st.get(0)+"<<<<");
     }
 }

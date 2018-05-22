@@ -16,6 +16,5 @@ public class Test {
         System.out.println(loc.getLocationLat());
         System.out.println(loc.getLocationLong());
         System.out.println(loc.getPlaceID());
-        System.out.println(loc.getStatus());
     }
 }

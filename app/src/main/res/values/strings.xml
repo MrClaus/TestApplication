@@ -45,4 +45,25 @@
 
     <string name="favorites_city_activity_name">Favorites city</string>
 
+
+    <!-- For data of forecast -->
+
+    <string name="weather_temperature">Temperature:</string>
+    <string name="weather_pressure">Pressure:</string>
+    <string name="weather_humidity">Humidity:</string>
+    <string name="weather_wind">Wind:</string>
+    <string name="weather_clouds">Clouds:</string>
+    <string name="forecast_is_city">Add a city</string>
+
+    <string-array name="day_time_forecast">
+        <item>Midnight</item>
+        <item>Night</item>
+        <item>Morning</item>
+        <item>Morning</item>
+        <item>Noon</item>
+        <item>Day</item>
+        <item>Evening</item>
+        <item>Evening</item>
+    </string-array>
+
 </resources>

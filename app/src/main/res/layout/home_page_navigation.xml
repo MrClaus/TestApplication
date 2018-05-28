@@ -20,7 +20,7 @@
     <android.support.constraint.Guideline
         android:id="@+id/home_top_line"
         style="@style/HorizontalLine"
-        app:layout_constraintGuide_percent="0.08"/>
+        app:layout_constraintGuide_begin="16dp"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/home_medV_line"
@@ -43,6 +43,74 @@
         app:layout_constraintGuide_percent="0.9"/>
 
     <!-- Располагаем элементы в соответствии с гайдлайнами -->
+
+    <ImageView
+        android:id="@+id/refresh_img"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/home_top_line"
+        app:layout_constraintBottom_toBottomOf="@+id/current_weather_frame"
+        android:src="@drawable/refresh_ic"
+        android:alpha="0.62"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/current_weather_frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="@id/home_left_line"
+        app:layout_constraintRight_toRightOf="@id/home_right_line"
+        app:layout_constraintTop_toTopOf="@id/home_top_line"
+        app:layout_constraintBottom_toTopOf="@+id/but_quad_1"
+        android:layout_marginBottom="28dp"
+        android:background="#8800ff00">
+
+        <ImageView
+            android:id="@+id/current_clock"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/current_weather_border"
+            android:layout_marginLeft="16dp"
+            android:alpha="0.62"
+            android:src="@drawable/clock_ic"/>
+
+        <TextView
+            android:id="@+id/refresh_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/current_clock"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:text="111"/>
+
+        <View
+            android:id="@+id/current_weather_border"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/refresh_date"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="#55000000"/>
+
+        <TextView
+            android:id="@+id/current_weather_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/current_weather_border"
+            android:textSize="75sp"/>
+
+    </android.support.constraint.ConstraintLayout>
 
     <View
         android:id="@+id/but_quad_1"

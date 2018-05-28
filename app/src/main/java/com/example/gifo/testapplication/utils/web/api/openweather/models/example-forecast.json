@@ -1,0 +1,1348 @@
+{
+  "cod": "200",
+  "message": 0.0075,
+  "cnt": 40,
+  "list": [
+    {
+      "dt": 1527076800,
+      "main": {
+        "temp": 298.55,
+        "temp_min": 298.076,
+        "temp_max": 298.55,
+        "pressure": 1020.29,
+        "sea_level": 1034.59,
+        "grnd_level": 1020.29,
+        "humidity": 64,
+        "temp_kf": 0.47
+      },
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10d"
+        }
+      ],
+      "clouds": {
+        "all": 12
+      },
+      "wind": {
+        "speed": 5.47,
+        "deg": 220.004
+      },
+      "rain": {
+        "3h": 0.915
+      },
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-23 12:00:00"
+    },
+    {
+      "dt": 1527087600,
+      "main": {
+        "temp": 292.94,
+        "temp_min": 292.585,
+        "temp_max": 292.94,
+        "pressure": 1019.91,
+        "sea_level": 1033.87,
+        "grnd_level": 1019.91,
+        "humidity": 99,
+        "temp_kf": 0.35
+      },
+      "weather": [
+        {
+          "id": 501,
+          "main": "Rain",
+          "description": "moderate rain",
+          "icon": "10d"
+        }
+      ],
+      "clouds": {
+        "all": 8
+      },
+      "wind": {
+        "speed": 2.66,
+        "deg": 254.001
+      },
+      "rain": {
+        "3h": 3.945
+      },
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-23 15:00:00"
+    },
+    {
+      "dt": 1527098400,
+      "main": {
+        "temp": 289.86,
+        "temp_min": 289.621,
+        "temp_max": 289.86,
+        "pressure": 1019.76,
+        "sea_level": 1033.98,
+        "grnd_level": 1019.76,
+        "humidity": 82,
+        "temp_kf": 0.24
+      },
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10n"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 1.43,
+        "deg": 248.501
+      },
+      "rain": {
+        "3h": 0.15
+      },
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-23 18:00:00"
+    },
+    {
+      "dt": 1527109200,
+      "main": {
+        "temp": 286.29,
+        "temp_min": 286.171,
+        "temp_max": 286.29,
+        "pressure": 1019.77,
+        "sea_level": 1033.97,
+        "grnd_level": 1019.77,
+        "humidity": 82,
+        "temp_kf": 0.12
+      },
+      "weather": [
+        {
+          "id": 801,
+          "main": "Clouds",
+          "description": "few clouds",
+          "icon": "02n"
+        }
+      ],
+      "clouds": {
+        "all": 12
+      },
+      "wind": {
+        "speed": 2.22,
+        "deg": 297.501
+      },
+      "rain": {},
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-23 21:00:00"
+    },
+    {
+      "dt": 1527120000,
+      "main": {
+        "temp": 284.23,
+        "temp_min": 284.23,
+        "temp_max": 284.23,
+        "pressure": 1019.86,
+        "sea_level": 1034.13,
+        "grnd_level": 1019.86,
+        "humidity": 85,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 801,
+          "main": "Clouds",
+          "description": "few clouds",
+          "icon": "02n"
+        }
+      ],
+      "clouds": {
+        "all": 24
+      },
+      "wind": {
+        "speed": 1.21,
+        "deg": 307.503
+      },
+      "rain": {},
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-24 00:00:00"
+    },
+    {
+      "dt": 1527130800,
+      "main": {
+        "temp": 288.769,
+        "temp_min": 288.769,
+        "temp_max": 288.769,
+        "pressure": 1019.68,
+        "sea_level": 1033.88,
+        "grnd_level": 1019.68,
+        "humidity": 86,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03d"
+        }
+      ],
+      "clouds": {
+        "all": 48
+      },
+      "wind": {
+        "speed": 1.26,
+        "deg": 337.504
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-24 03:00:00"
+    },
+    {
+      "dt": 1527141600,
+      "main": {
+        "temp": 293.159,
+        "temp_min": 293.159,
+        "temp_max": 293.159,
+        "pressure": 1019.33,
+        "sea_level": 1033.49,
+        "grnd_level": 1019.33,
+        "humidity": 81,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "clouds": {
+        "all": 68
+      },
+      "wind": {
+        "speed": 1.96,
+        "deg": 34.0007
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-24 06:00:00"
+    },
+    {
+      "dt": 1527152400,
+      "main": {
+        "temp": 294.842,
+        "temp_min": 294.842,
+        "temp_max": 294.842,
+        "pressure": 1018.45,
+        "sea_level": 1032.47,
+        "grnd_level": 1018.45,
+        "humidity": 71,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "clouds": {
+        "all": 80
+      },
+      "wind": {
+        "speed": 1.82,
+        "deg": 138.503
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-24 09:00:00"
+    },
+    {
+      "dt": 1527163200,
+      "main": {
+        "temp": 296.315,
+        "temp_min": 296.315,
+        "temp_max": 296.315,
+        "pressure": 1017.21,
+        "sea_level": 1031.2,
+        "grnd_level": 1017.21,
+        "humidity": 61,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03d"
+        }
+      ],
+      "clouds": {
+        "all": 36
+      },
+      "wind": {
+        "speed": 1.76,
+        "deg": 16.003
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-24 12:00:00"
+    },
+    {
+      "dt": 1527174000,
+      "main": {
+        "temp": 296.6,
+        "temp_min": 296.6,
+        "temp_max": 296.6,
+        "pressure": 1015.82,
+        "sea_level": 1029.89,
+        "grnd_level": 1015.82,
+        "humidity": 50,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 801,
+          "main": "Clouds",
+          "description": "few clouds",
+          "icon": "02d"
+        }
+      ],
+      "clouds": {
+        "all": 20
+      },
+      "wind": {
+        "speed": 2.01,
+        "deg": 9.50055
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-24 15:00:00"
+    },
+    {
+      "dt": 1527184800,
+      "main": {
+        "temp": 291.807,
+        "temp_min": 291.807,
+        "temp_max": 291.807,
+        "pressure": 1015.27,
+        "sea_level": 1029.46,
+        "grnd_level": 1015.27,
+        "humidity": 53,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 801,
+          "main": "Clouds",
+          "description": "few clouds",
+          "icon": "02n"
+        }
+      ],
+      "clouds": {
+        "all": 20
+      },
+      "wind": {
+        "speed": 2.4,
+        "deg": 344.503
+      },
+      "rain": {},
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-24 18:00:00"
+    },
+    {
+      "dt": 1527195600,
+      "main": {
+        "temp": 290.859,
+        "temp_min": 290.859,
+        "temp_max": 290.859,
+        "pressure": 1015.91,
+        "sea_level": 1030.15,
+        "grnd_level": 1015.91,
+        "humidity": 49,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03n"
+        }
+      ],
+      "clouds": {
+        "all": 32
+      },
+      "wind": {
+        "speed": 7.26,
+        "deg": 28.5007
+      },
+      "rain": {},
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-24 21:00:00"
+    },
+    {
+      "dt": 1527206400,
+      "main": {
+        "temp": 286.654,
+        "temp_min": 286.654,
+        "temp_max": 286.654,
+        "pressure": 1018.05,
+        "sea_level": 1032.25,
+        "grnd_level": 1018.05,
+        "humidity": 40,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01n"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 7.47,
+        "deg": 24.5002
+      },
+      "rain": {},
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-25 00:00:00"
+    },
+    {
+      "dt": 1527217200,
+      "main": {
+        "temp": 285.074,
+        "temp_min": 285.074,
+        "temp_max": 285.074,
+        "pressure": 1019.33,
+        "sea_level": 1033.62,
+        "grnd_level": 1019.33,
+        "humidity": 41,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 7.61,
+        "deg": 27
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-25 03:00:00"
+    },
+    {
+      "dt": 1527228000,
+      "main": {
+        "temp": 288.292,
+        "temp_min": 288.292,
+        "temp_max": 288.292,
+        "pressure": 1020.06,
+        "sea_level": 1034.37,
+        "grnd_level": 1020.06,
+        "humidity": 43,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 7.91,
+        "deg": 28.0005
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-25 06:00:00"
+    },
+    {
+      "dt": 1527238800,
+      "main": {
+        "temp": 289.486,
+        "temp_min": 289.486,
+        "temp_max": 289.486,
+        "pressure": 1020.13,
+        "sea_level": 1034.41,
+        "grnd_level": 1020.13,
+        "humidity": 42,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 801,
+          "main": "Clouds",
+          "description": "few clouds",
+          "icon": "02d"
+        }
+      ],
+      "clouds": {
+        "all": 12
+      },
+      "wind": {
+        "speed": 8.86,
+        "deg": 16.5079
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-25 09:00:00"
+    },
+    {
+      "dt": 1527249600,
+      "main": {
+        "temp": 289.611,
+        "temp_min": 289.611,
+        "temp_max": 289.611,
+        "pressure": 1020.85,
+        "sea_level": 1035.1,
+        "grnd_level": 1020.85,
+        "humidity": 37,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 9.96,
+        "deg": 19.0001
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-25 12:00:00"
+    },
+    {
+      "dt": 1527260400,
+      "main": {
+        "temp": 287.818,
+        "temp_min": 287.818,
+        "temp_max": 287.818,
+        "pressure": 1022.1,
+        "sea_level": 1036.37,
+        "grnd_level": 1022.1,
+        "humidity": 30,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 10.2,
+        "deg": 19.5012
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-25 15:00:00"
+    },
+    {
+      "dt": 1527271200,
+      "main": {
+        "temp": 284.71,
+        "temp_min": 284.71,
+        "temp_max": 284.71,
+        "pressure": 1023.81,
+        "sea_level": 1038.19,
+        "grnd_level": 1023.81,
+        "humidity": 29,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01n"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 8.21,
+        "deg": 23.0034
+      },
+      "rain": {},
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-25 18:00:00"
+    },
+    {
+      "dt": 1527282000,
+      "main": {
+        "temp": 282.43,
+        "temp_min": 282.43,
+        "temp_max": 282.43,
+        "pressure": 1025.28,
+        "sea_level": 1039.87,
+        "grnd_level": 1025.28,
+        "humidity": 34,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01n"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 6.46,
+        "deg": 23.5001
+      },
+      "rain": {},
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-25 21:00:00"
+    },
+    {
+      "dt": 1527292800,
+      "main": {
+        "temp": 279.926,
+        "temp_min": 279.926,
+        "temp_max": 279.926,
+        "pressure": 1027.28,
+        "sea_level": 1042.01,
+        "grnd_level": 1027.28,
+        "humidity": 43,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01n"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 4.67,
+        "deg": 33.0021
+      },
+      "rain": {},
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-26 00:00:00"
+    },
+    {
+      "dt": 1527303600,
+      "main": {
+        "temp": 281.311,
+        "temp_min": 281.311,
+        "temp_max": 281.311,
+        "pressure": 1029.09,
+        "sea_level": 1043.75,
+        "grnd_level": 1029.09,
+        "humidity": 47,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 4.57,
+        "deg": 31.5008
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-26 03:00:00"
+    },
+    {
+      "dt": 1527314400,
+      "main": {
+        "temp": 286.182,
+        "temp_min": 286.182,
+        "temp_max": 286.182,
+        "pressure": 1030.04,
+        "sea_level": 1044.5,
+        "grnd_level": 1030.04,
+        "humidity": 43,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 5.61,
+        "deg": 32.5007
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-26 06:00:00"
+    },
+    {
+      "dt": 1527325200,
+      "main": {
+        "temp": 288.568,
+        "temp_min": 288.568,
+        "temp_max": 288.568,
+        "pressure": 1029.84,
+        "sea_level": 1044.25,
+        "grnd_level": 1029.84,
+        "humidity": 39,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 6.57,
+        "deg": 28.0067
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-26 09:00:00"
+    },
+    {
+      "dt": 1527336000,
+      "main": {
+        "temp": 290.154,
+        "temp_min": 290.154,
+        "temp_max": 290.154,
+        "pressure": 1028.91,
+        "sea_level": 1043.3,
+        "grnd_level": 1028.91,
+        "humidity": 36,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 5.87,
+        "deg": 27.0008
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-26 12:00:00"
+    },
+    {
+      "dt": 1527346800,
+      "main": {
+        "temp": 290.099,
+        "temp_min": 290.099,
+        "temp_max": 290.099,
+        "pressure": 1028.03,
+        "sea_level": 1042.32,
+        "grnd_level": 1028.03,
+        "humidity": 31,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 4.57,
+        "deg": 20.5002
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-26 15:00:00"
+    },
+    {
+      "dt": 1527357600,
+      "main": {
+        "temp": 284.094,
+        "temp_min": 284.094,
+        "temp_max": 284.094,
+        "pressure": 1027.33,
+        "sea_level": 1041.76,
+        "grnd_level": 1027.33,
+        "humidity": 60,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01n"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 1.4,
+        "deg": 17.002
+      },
+      "rain": {},
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-26 18:00:00"
+    },
+    {
+      "dt": 1527368400,
+      "main": {
+        "temp": 280.108,
+        "temp_min": 280.108,
+        "temp_max": 280.108,
+        "pressure": 1026.05,
+        "sea_level": 1040.72,
+        "grnd_level": 1026.05,
+        "humidity": 57,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01n"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 1.95,
+        "deg": 202.003
+      },
+      "rain": {},
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-26 21:00:00"
+    },
+    {
+      "dt": 1527379200,
+      "main": {
+        "temp": 280.357,
+        "temp_min": 280.357,
+        "temp_max": 280.357,
+        "pressure": 1024.67,
+        "sea_level": 1039.28,
+        "grnd_level": 1024.67,
+        "humidity": 45,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01n"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 4.21,
+        "deg": 250.008
+      },
+      "rain": {},
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-27 00:00:00"
+    },
+    {
+      "dt": 1527390000,
+      "main": {
+        "temp": 284.707,
+        "temp_min": 284.707,
+        "temp_max": 284.707,
+        "pressure": 1022.53,
+        "sea_level": 1037.1,
+        "grnd_level": 1022.53,
+        "humidity": 46,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 6.01,
+        "deg": 270.502
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-27 03:00:00"
+    },
+    {
+      "dt": 1527400800,
+      "main": {
+        "temp": 291.157,
+        "temp_min": 291.157,
+        "temp_max": 291.157,
+        "pressure": 1019.36,
+        "sea_level": 1033.64,
+        "grnd_level": 1019.36,
+        "humidity": 42,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03d"
+        }
+      ],
+      "clouds": {
+        "all": 36
+      },
+      "wind": {
+        "speed": 7.46,
+        "deg": 264.502
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-27 06:00:00"
+    },
+    {
+      "dt": 1527411600,
+      "main": {
+        "temp": 295.023,
+        "temp_min": 295.023,
+        "temp_max": 295.023,
+        "pressure": 1016.04,
+        "sea_level": 1030.13,
+        "grnd_level": 1016.04,
+        "humidity": 45,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03d"
+        }
+      ],
+      "clouds": {
+        "all": 44
+      },
+      "wind": {
+        "speed": 7.76,
+        "deg": 278.001
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-27 09:00:00"
+    },
+    {
+      "dt": 1527422400,
+      "main": {
+        "temp": 294.561,
+        "temp_min": 294.561,
+        "temp_max": 294.561,
+        "pressure": 1013.39,
+        "sea_level": 1027.45,
+        "grnd_level": 1013.39,
+        "humidity": 41,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "clouds": {
+        "all": 76
+      },
+      "wind": {
+        "speed": 10.22,
+        "deg": 285.5
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-27 12:00:00"
+    },
+    {
+      "dt": 1527433200,
+      "main": {
+        "temp": 289.078,
+        "temp_min": 289.078,
+        "temp_max": 289.078,
+        "pressure": 1012.12,
+        "sea_level": 1026.27,
+        "grnd_level": 1012.12,
+        "humidity": 68,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10d"
+        }
+      ],
+      "clouds": {
+        "all": 92
+      },
+      "wind": {
+        "speed": 9.71,
+        "deg": 295.004
+      },
+      "rain": {
+        "3h": 0.615
+      },
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-27 15:00:00"
+    },
+    {
+      "dt": 1527444000,
+      "main": {
+        "temp": 283.787,
+        "temp_min": 283.787,
+        "temp_max": 283.787,
+        "pressure": 1011.92,
+        "sea_level": 1026.14,
+        "grnd_level": 1011.92,
+        "humidity": 84,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10n"
+        }
+      ],
+      "clouds": {
+        "all": 92
+      },
+      "wind": {
+        "speed": 4.86,
+        "deg": 326.004
+      },
+      "rain": {
+        "3h": 2.025
+      },
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-27 18:00:00"
+    },
+    {
+      "dt": 1527454800,
+      "main": {
+        "temp": 282.177,
+        "temp_min": 282.177,
+        "temp_max": 282.177,
+        "pressure": 1012.17,
+        "sea_level": 1026.54,
+        "grnd_level": 1012.17,
+        "humidity": 84,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10n"
+        }
+      ],
+      "clouds": {
+        "all": 24
+      },
+      "wind": {
+        "speed": 8.22,
+        "deg": 353.501
+      },
+      "rain": {
+        "3h": 0.1375
+      },
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-27 21:00:00"
+    },
+    {
+      "dt": 1527465600,
+      "main": {
+        "temp": 280.498,
+        "temp_min": 280.498,
+        "temp_max": 280.498,
+        "pressure": 1013.2,
+        "sea_level": 1027.63,
+        "grnd_level": 1013.2,
+        "humidity": 80,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01n"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 7.17,
+        "deg": 350
+      },
+      "rain": {},
+      "sys": {
+        "pod": "n"
+      },
+      "dt_txt": "2018-05-28 00:00:00"
+    },
+    {
+      "dt": 1527476400,
+      "main": {
+        "temp": 281.758,
+        "temp_min": 281.758,
+        "temp_max": 281.758,
+        "pressure": 1014.01,
+        "sea_level": 1028.46,
+        "grnd_level": 1014.01,
+        "humidity": 69,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 7.26,
+        "deg": 349.002
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-28 03:00:00"
+    },
+    {
+      "dt": 1527487200,
+      "main": {
+        "temp": 285.505,
+        "temp_min": 285.505,
+        "temp_max": 285.505,
+        "pressure": 1013.99,
+        "sea_level": 1028.31,
+        "grnd_level": 1013.99,
+        "humidity": 48,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 8.76,
+        "deg": 339.503
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-28 06:00:00"
+    },
+    {
+      "dt": 1527498000,
+      "main": {
+        "temp": 286.59,
+        "temp_min": 286.59,
+        "temp_max": 286.59,
+        "pressure": 1013.62,
+        "sea_level": 1027.96,
+        "grnd_level": 1013.62,
+        "humidity": 39,
+        "temp_kf": 0
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03d"
+        }
+      ],
+      "clouds": {
+        "all": 36
+      },
+      "wind": {
+        "speed": 10.76,
+        "deg": 344.004
+      },
+      "rain": {},
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2018-05-28 09:00:00"
+    }
+  ],
+  "city": {
+    "id": 519560,
+    "name": "Penza",
+    "coord": {
+      "lat": 55.7833,
+      "lon": 42.0833
+    },
+    "country": "RU"
+  }
+}

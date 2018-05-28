@@ -13,8 +13,8 @@ public class Geolocation {
 
     /* Парсинг JSON - заполнение объекта Geolocation соответствующими данными из JSON */
 
-    @SerializedName("status") // Статус ответа на запрос - ОК - если успешно
-    private String status;
+    @SerializedName("status")
+    private String status; // Статус ответа на запрос - ОК - если успешно
 
     @SerializedName("results")
     private ArrayList<Results> results;
@@ -49,10 +49,10 @@ public class Geolocation {
     // JSON объект - 'results/geometry/location'
     private class Location {
         @SerializedName("lat")
-        String lat;
+        double lat;
 
         @SerializedName("lng")
-        String lng;
+        double lng;
     }
 
     /* Методы получения данных заполненного объекта Geolocation по образцу JSON */
@@ -60,6 +60,11 @@ public class Geolocation {
     // Возвращает - true - если JSON загрузил модель и объект Кesults - не пустой
     public boolean isResults() {
         return (status.equals("OK") && (results != null) && (!results.isEmpty())) ? true : false;
+    }
+
+    // Возвращает ответ от сервера о статусе запроса
+    public String getResponseStatus() {
+        return status;
     }
 
     // Возвращает название города по ответу из JSON
@@ -92,7 +97,7 @@ public class Geolocation {
     }
 
     // Возвращает значение широты на мировой карте по ответу из JSON
-    public String getLocationLat() {
+    public Double getLocationLat() {
         if (isResults()) {
             Location loc = results.get(0).geometry.location;
             return (loc != null) ? loc.lat : null;
@@ -100,7 +105,7 @@ public class Geolocation {
     }
 
     // Возвращает значение долготы на мировой карте по ответу из JSON
-    public String getLocationLong() {
+    public Double getLocationLong() {
         if (isResults()) {
             Location loc = results.get(0).geometry.location;
             return (loc != null) ? loc.lng : null;

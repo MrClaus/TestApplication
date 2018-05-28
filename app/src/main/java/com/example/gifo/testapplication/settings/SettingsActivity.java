@@ -60,6 +60,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 appSettingsPut.putInt("Lang", spinnerLang.getSelectedItemPosition());
                 appSettingsPut.putInt("WeatherDays", spinnerDay.getSelectedItemPosition());
                 appSettingsPut.putInt("TemperatureKey", spinnerTemp.getSelectedItemPosition());
+                appSettingsPut.putBoolean("FirstRefreshWeather", checkRefreshData.isChecked());
                 appSettingsPut.apply();
             }
             onBackPressed();
@@ -116,6 +117,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
         // Инициализируем чекбокс выбора/ отмены выбора подгрузки данных при старте приложения
         checkRefreshData = findViewById(R.id.check_refresh_settings);
+        boolean isFirstRefresh = appSettings.getBoolean("FirstRefreshWeather", false);
+        checkRefreshData.setChecked(isFirstRefresh);
 
         // Добавляем ripple- эффект для следующих buttons
         addRippleButton(R.id.ripple_lang_settings);

@@ -46,4 +46,25 @@
 
     <string name="favorites_city_activity_name">Избранные города</string>
 
+
+    <!-- For data of forecast -->
+
+    <string name="weather_temperature">Температура:</string>
+    <string name="weather_pressure">Атмосферное давление:</string>
+    <string name="weather_humidity">Влажность воздуха:</string>
+    <string name="weather_wind">Ветер:</string>
+    <string name="weather_clouds">Облачность:</string>
+    <string name="forecast_is_city">Добавьте город</string>
+
+    <string-array name="day_time_forecast">
+        <item>Полночь</item>
+        <item>Ночь</item>
+        <item>Утро</item>
+        <item>Утро</item>
+        <item>Полдень</item>
+        <item>День</item>
+        <item>Вечер</item>
+        <item>Вечер</item>
+    </string-array>
+
 </resources>

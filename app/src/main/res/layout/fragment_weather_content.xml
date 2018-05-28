@@ -4,27 +4,121 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/weather_frame"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="300dp"
     android:layout_marginLeft="6dp"
     android:layout_marginRight="6dp"
     android:layout_marginBottom="10dp"
     android:background="#8800ff00">
 
     <TextView
-        android:paddingTop="4dp"
-        android:paddingLeft="4dp"
-        android:id="@+id/text_name"
+        android:id="@+id/day_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/weather_for_content"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"/>
+
+    <View
+        android:id="@+id/weather_border_top"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/day_date"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#55000000"/>
 
     <TextView
-        android:id="@+id/text_w"
+        android:id="@+id/forecast_temperature"
+        style="@style/FieldForecast"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_border_top"
+        android:layout_marginTop="24dp"
+        android:text="@string/weather_temperature"/>
+
+    <TextView
+        android:id="@+id/forecast_pressure"
+        style="@style/FieldForecast"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/forecast_temperature"
+        android:layout_marginTop="8dp"
+        android:text="@string/weather_pressure"/>
+
+    <TextView
+        android:id="@+id/forecast_humidity"
+        style="@style/FieldForecast"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/forecast_pressure"
+        android:layout_marginTop="8dp"
+        android:text="@string/weather_humidity"/>
+
+    <TextView
+        android:id="@+id/forecast_wind"
+        style="@style/FieldForecast"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/forecast_humidity"
+        android:layout_marginTop="8dp"
+        android:text="@string/weather_wind"/>
+
+    <TextView
+        android:id="@+id/forecast_clouds"
+        style="@style/FieldForecast"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/forecast_wind"
+        android:layout_marginTop="8dp"
+        android:text="@string/weather_clouds"/>
+
+    <TextView
+        android:id="@+id/value_temperature"
+        style="@style/FieldForecast"
+        app:layout_constraintLeft_toRightOf="@id/forecast_temperature"
+        app:layout_constraintBaseline_toBaselineOf="@id/forecast_temperature"/>
+
+    <TextView
+        android:id="@+id/value_pressure"
+        style="@style/FieldForecast"
+        app:layout_constraintLeft_toRightOf="@id/forecast_pressure"
+        app:layout_constraintBaseline_toBaselineOf="@id/forecast_pressure"/>
+
+    <TextView
+        android:id="@+id/value_humidity"
+        style="@style/FieldForecast"
+        app:layout_constraintLeft_toRightOf="@id/forecast_humidity"
+        app:layout_constraintBaseline_toBaselineOf="@id/forecast_humidity"/>
+
+    <TextView
+        android:id="@+id/value_wind"
+        style="@style/FieldForecast"
+        app:layout_constraintLeft_toRightOf="@id/forecast_wind"
+        app:layout_constraintBaseline_toBaselineOf="@id/forecast_wind"/>
+
+    <TextView
+        android:id="@+id/value_clouds"
+        style="@style/FieldForecast"
+        app:layout_constraintLeft_toRightOf="@id/forecast_clouds"
+        app:layout_constraintBaseline_toBaselineOf="@id/forecast_clouds"/>
+
+    <FrameLayout
+        android:id="@+id/frame_hours_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="8dp"
-        app:layout_constraintBaseline_toBaselineOf="@id/text_name"
-        app:layout_constraintLeft_toRightOf="@id/text_name"
-        android:text="TEXT2"/>
+        app:layout_constraintLeft_toLeftOf="@id/weather_frame"
+        app:layout_constraintRight_toRightOf="@id/weather_frame"
+        app:layout_constraintTop_toTopOf="@id/weather_frame"
+        app:layout_constraintBottom_toBottomOf="@id/weather_frame"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:background="#55ff0000">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_hours_list"
+            android:scrollbars="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

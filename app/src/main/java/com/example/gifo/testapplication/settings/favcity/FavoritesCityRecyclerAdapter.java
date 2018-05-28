@@ -24,7 +24,7 @@ public class FavoritesCityRecyclerAdapter extends RecyclerView.Adapter<Favorites
     private ArrayList<String> citiesField; // метаданные, на основе которых создаётся и заполняется массив View
 
     // Объект ViewHolder, который содержит базовый экземпляр текущего View и его поля класса
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
         public Button mButtonViev;
 
@@ -32,6 +32,13 @@ public class FavoritesCityRecyclerAdapter extends RecyclerView.Adapter<Favorites
             super(itemView);
             mTextView = itemView.findViewById(R.id.city_name);
             mButtonViev = itemView.findViewById(R.id.del_city);
+
+            mButtonViev.setOnClickListener (new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    removeFavcityView(getAdapterPosition());
+                }
+            });
         }
     }
 
@@ -55,13 +62,6 @@ public class FavoritesCityRecyclerAdapter extends RecyclerView.Adapter<Favorites
     @Override
     public void onBindViewHolder(final FavoritesCityRecyclerAdapter.ViewHolder holder, int position) {
         holder.mTextView.setText(citiesField.get(position));
-
-        holder.mButtonViev.setOnClickListener (new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                removeFavcityView(holder.getAdapterPosition());
-            }
-        });
     }
 
     @Override

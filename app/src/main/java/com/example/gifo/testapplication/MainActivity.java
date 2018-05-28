@@ -1,22 +1,42 @@
 package com.example.gifo.testapplication;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.content.Context;
 import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.WindowManager;
+import android.widget.Spinner;
+
+import com.example.gifo.testapplication.app.AppContext;
+import com.example.gifo.testapplication.app.AppDatabase;
 import com.example.gifo.testapplication.home.HomePagesAdapter;
+import com.example.gifo.testapplication.home.pages.forecast.ForecastPage;
+import com.example.gifo.testapplication.home.pages.forecast.ForecastRecyclerAdapter;
+import com.example.gifo.testapplication.home.pages.forecast.radioview.HoursListAdapter;
+import com.example.gifo.testapplication.home.pages.navigation.NavigationPage;
 import com.example.gifo.testapplication.local.LocalContext;
+import com.example.gifo.testapplication.service.WeatherService;
+import com.example.gifo.testapplication.service.models.CurrentWeather;
+import com.example.gifo.testapplication.service.models.ForecastWeather;
 import com.example.gifo.testapplication.settings.SettingsActivity;
+import com.example.gifo.testapplication.utils.preferences.StringArray;
+
 import r21nomi.com.glrippleview.AnimationUtil;
 import r21nomi.com.glrippleview.GLRippleView;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import kotlin.Pair;
 
@@ -24,7 +44,10 @@ import kotlin.Pair;
  * Created by gifo.
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements HoursListAdapter.ForecastRecyclerHourslistInterface,
+        ForecastPage.ForecastPageRecyclerInterface,
+        NavigationPage.NavigationPageWeatherInterface {
 
     // Инициализируемые параметры экрана устройства в initDisplayParams()
     private float WIDTH;
@@ -32,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Инициализируем объект Preferences для чтения настроек
     SharedPreferences appSettings;
+    SharedPreferences.Editor appSettingsPut;
 
     // Текущее время объекта Date - методы getLastTime, setLastTime, getCurrentTime
     private long currentTimeMs;
@@ -39,7 +63,15 @@ public class MainActivity extends AppCompatActivity {
     // Переменные объекта ViewPager
     ViewPager pager;
     PagerAdapter pagerAdapter;
+    NavigationPage currentWeatherPage = null;
+    RecyclerView forecast = null;
+    ForecastRecyclerAdapter forecastAdapter = null;
+    Spinner forecastSpinner;
 
+    public Handler firstRefresh; // хэндлер для проверки состояния готовности элементов активити
+    boolean isFirstRefresh; // данные из SharedPreferences - настройка обновления погоды при старте
+
+    WeatherService myWeatherService;
 
     // Переменные объекта GLRippleView
     volatile GLRippleView glRippleView = null;
@@ -86,6 +118,21 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Обрабатываем выбор секций из списка меню
         int id = item.getItemId();
+        if (id == R.id.action_refresh) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        int pos = forecastSpinner.getSelectedItemPosition();
+                        String[] cityesField = StringArray.getArray(appSettings.getString("CitiesField", ""));
+                        appSettingsPut.putString("SelectCity", cityesField[pos]);
+                        appSettingsPut.apply();
+                        WeatherService.getService().setCity(cityesField[pos]);
+                        WeatherService.getService().refreshData();
+                    } catch (Exception e) {} // Облом с интернетом
+                }
+            }).start();
+        }
         if (id == R.id.action_settings) {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
@@ -141,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
         // appSettings - объект Preferences для чтения настроек
         appSettings = this.getSharedPreferences("main", Context.MODE_PRIVATE);
+        appSettingsPut = appSettings.edit();
 
         // Инициализируем glRippleView
         glRippleView = findViewById(R.id.glRippleView);
@@ -149,11 +197,35 @@ public class MainActivity extends AppCompatActivity {
          *  Первая страница - навигационная (краткая информация о сегодняшней погоде и пользовательские button's)
          *  Вторая страница - прогноз погоды на N- количество дней (значение N меняется в настройках)
          */
+
         int homePagesCount = 2; // количество страниц элемента HomePages
         int weatherPages = appSettings.getInt("WeatherDays", 0) + 1; // читаем из настроек количество дней для прогнозного списка
-        pager = (ViewPager) findViewById(R.id.pager);
+        pager = findViewById(R.id.pager);
         pagerAdapter = new HomePagesAdapter(homePagesCount, getSupportFragmentManager(), weatherPages);
         pager.setAdapter(pagerAdapter);
+
+        //myWeatherService = WeatherService.getService();
+        //myWeatherService.setCity("Penza");
+
+        observeDatabase(); // подписываем активити на обновление данных из БД
+
+        // Обновляем погоду - если в настройках прописано - обновлять данные о погоде при старте приложения
+        isFirstRefresh = appSettings.getBoolean("FirstRefreshWeather", false);
+        firstRefresh = new Handler() {
+            @Override
+            public void handleMessage(android.os.Message msg) {
+                if ((currentWeatherPage != null) && (forecastAdapter != null) && isFirstRefresh) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                WeatherService.getService().refreshData();
+                            } catch (Exception e) {} // Облом с интернетом
+                        }
+                    }).start();
+                }
+            };
+        };
     }
 
 
@@ -175,5 +247,63 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         glRippleView.onPause();
         super.onStop();
+    }
+
+
+    @Override
+    public void onInitializeForecastPageRecycler(Spinner forecast_spinner, RecyclerView view, ForecastRecyclerAdapter adapter) {
+        forecast = view;
+        forecastSpinner = forecast_spinner;
+        forecastAdapter = adapter;
+        firstRefresh.sendEmptyMessage(0);
+    }
+
+
+    @Override
+    public void onSelectForecastHourslist(int hourslistRecyclerPosition, int forecastRecyclerPosition) {
+        forecastAdapter.refreshFromHourslistSelected(hourslistRecyclerPosition, forecastRecyclerPosition);
+    }
+
+
+    @Override
+    public void onInitializeNavigationPageWeather(NavigationPage currentWeatherPage) {
+        this.currentWeatherPage = currentWeatherPage;
+        firstRefresh.sendEmptyMessage(0);
+    }
+
+
+    // Подписывает текущее ативити на обновление данных в БД приложения
+    public void observeDatabase() {
+
+        // Получаем объект базы данных и подписываемя на обновления данных в БД
+        AppDatabase db = AppContext.getContext().getDatabase();
+
+        LiveData<CurrentWeather> currentWeatherLoadData = db.currentWeatherDAO().getById(1);
+        currentWeatherLoadData.observe(this, new Observer<CurrentWeather>() {
+            @Override
+            public void onChanged(@Nullable CurrentWeather currentWeather) {
+                if ((currentWeather != null) && (currentWeatherPage != null)) {
+                    SimpleDateFormat formatForDateNow = new SimpleDateFormat("HH:mm / yyyy-MM-dd");
+                    String refresh_date = formatForDateNow.format(new Date());
+                    int tempSet = appSettings.getInt("TemperatureKey", 0);
+                    String temperature =
+                            (int) ((tempSet == 0)
+                                    ? currentWeather.getWeather().getCelsiusTemp()
+                                    : currentWeather.getWeather().getFahrenheitTemp())
+                                    + " \u00B0" + ((tempSet == 0) ? "C" : "F");
+                    currentWeatherPage.refreshContent(refresh_date, temperature);
+                }
+            }
+        });
+
+        LiveData<ForecastWeather> forecastWeatherLoadData = db.forecastWeatherDAO().getById(1);
+        forecastWeatherLoadData.observe(this, new Observer<ForecastWeather>() {
+            @Override
+            public void onChanged(@Nullable ForecastWeather forecastWeather) {
+                if ((forecastWeather != null) && (forecastAdapter != null)) {
+                    forecastAdapter.refreshFromLiveData(forecastWeather);
+                }
+            }
+        });
     }
 }

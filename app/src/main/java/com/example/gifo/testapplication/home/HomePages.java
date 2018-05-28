@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.gifo.testapplication.R;
-import com.example.gifo.testapplication.home.pages.forecast.ForecastView;
-import com.example.gifo.testapplication.home.pages.navigation.NavigationView;
+import com.example.gifo.testapplication.home.pages.forecast.ForecastPage;
+import com.example.gifo.testapplication.home.pages.navigation.NavigationPage;
 
 /**
  * Created by gifo on 23.04.2018.
@@ -36,10 +36,12 @@ public class HomePages extends Fragment {
 
         /** Первая страница - навигационная
          *  Вторая страница - прогноз погоды на N- количество дней
+         *  Чтобы не писать здесь кучукода по созданию контента текущих страниц для каждой,
+         *  передадим их создание на сторону (наследникам PageView)
          */
 
-        if (pageNumber == 0) view = new NavigationView(inflater.inflate(R.layout.home_page_navigation, null)).getView();
-        else if (pageNumber == 1) view = new ForecastView(inflater.inflate(R.layout.home_page_forecast, null)).getView();
+        if (pageNumber == 0) view = new NavigationPage(inflater.inflate(R.layout.home_page_navigation, null), getContext()).getView();
+        if (pageNumber == 1) view = new ForecastPage(inflater.inflate(R.layout.home_page_forecast, null), getContext()).getView();
         return view;
     }
 }

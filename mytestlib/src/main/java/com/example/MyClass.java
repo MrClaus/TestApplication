@@ -3,6 +3,7 @@ package com.example;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,5 +19,10 @@ public class MyClass {
             System.out.println(i);
         }
         System.out.println(arr.length);*/
+
+        //Date dateNow = new Date();
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("HH:mm / yyyy-MM-dd");
+
+        System.out.println("              " + formatForDateNow.format(new Date())+"");
     }
 }

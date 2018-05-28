@@ -3,6 +3,7 @@ package com.example.gifo.testapplication.home;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 /**
  * Created by gifo on 02.05.2018.

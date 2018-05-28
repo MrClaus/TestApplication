@@ -1,0 +1,41 @@
+{
+  "coord": {
+    "lon": 42.08,
+    "lat": 55.78
+  },
+  "weather": [
+    {
+      "id": 800,
+      "main": "Clear",
+      "description": "clear sky",
+      "icon": "01d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 290.42,
+    "pressure": 1032.49,
+    "humidity": 53,
+    "temp_min": 290.42,
+    "temp_max": 290.42,
+    "sea_level": 1046.89,
+    "grnd_level": 1032.49
+  },
+  "wind": {
+    "speed": 2.06,
+    "deg": 17.5011
+  },
+  "clouds": {
+    "all": 0
+  },
+  "dt": 1527331036,
+  "sys": {
+    "message": 0.0075,
+    "country": "RU",
+    "sunrise": 1527295329,
+    "sunset": 1527356183
+  },
+  "id": 519560,
+  "name": "Penza",
+  "cod": 200
+}

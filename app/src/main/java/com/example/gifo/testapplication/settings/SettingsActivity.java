@@ -101,7 +101,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
         // Инициализируем спиннер выбора языка
         String[] field_lang = getResources().getStringArray(R.array.select_lang);
-        Integer[] icons_lang = { R.mipmap.down_icon, R.mipmap.down_icon2, R.mipmap.down_icon2 };
+        Integer[] icons_lang = { R.drawable.lang_auto, R.drawable.lang_us, R.drawable.lang_ru};
         spinnerLang = getSpinnerView(R.id.lang_spinner, field_lang, icons_lang);
         spinnerLang.setSelection(appSettings.getInt("Lang", 0));
 

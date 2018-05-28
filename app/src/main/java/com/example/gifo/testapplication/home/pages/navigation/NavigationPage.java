@@ -14,6 +14,7 @@ import com.example.gifo.testapplication.home.pages.PageView;
 
 public class NavigationPage extends PageView {
 
+    // Элементы загружаемого view
     View frame_view;
     ImageView refresh;
     TextView refresh_info;

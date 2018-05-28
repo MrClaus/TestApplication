@@ -50,23 +50,16 @@ public class ForecastPage extends PageView {
 
         // Отображаем в шапку Страницы (спиннер выбора города) последний в списке избранных город
         SharedPreferences appSettings = parent.getSharedPreferences("main", Context.MODE_PRIVATE);
-        SharedPreferences.Editor appSettingsPut = appSettings.edit();
-
         String[] cityesField = StringArray.getArray(appSettings.getString("CitiesField", ""));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(parent, android.R.layout.simple_spinner_item, cityesField);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner = view.findViewById(R.id.city_for_forecast);
         spinner.setAdapter(adapter);
-
         int select_pos = 0;
         String select_city = appSettings.getString("SelectCity", "");
         for (int i=0; i<cityesField.length; i++) if (select_city.equals(cityesField[i])) select_pos = i;
         spinner.setSelection(select_pos);
-
         if ((cityesField.length == 1) && (cityesField[0].length() == 0)) spinner.setPrompt(parent.getResources().getString(R.string.forecast_is_city));
-
-
-        System.out.println("------------------" + WeatherService.getService().getCity());
 
         // Задаём RecyclerView, определяем его отображение, задаём ему адаптер
         RecyclerView forecast = view.findViewById(R.id.recycler_forecast);

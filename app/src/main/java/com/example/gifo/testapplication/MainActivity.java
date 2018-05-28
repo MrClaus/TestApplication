@@ -71,8 +71,6 @@ public class MainActivity extends AppCompatActivity
     public Handler firstRefresh; // хэндлер для проверки состояния готовности элементов активити
     boolean isFirstRefresh; // данные из SharedPreferences - настройка обновления погоды при старте
 
-    WeatherService myWeatherService;
-
     // Переменные объекта GLRippleView
     volatile GLRippleView glRippleView = null;
     Thread glRipplePulse = null; // поток обработчик затухания волны
@@ -123,6 +121,7 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void run() {
                     try {
+                        // Читаем текущий выбранный город из спиннера и обновляем погоду
                         int pos = forecastSpinner.getSelectedItemPosition();
                         String[] cityesField = StringArray.getArray(appSettings.getString("CitiesField", ""));
                         appSettingsPut.putString("SelectCity", cityesField[pos]);
@@ -203,9 +202,6 @@ public class MainActivity extends AppCompatActivity
         pager = findViewById(R.id.pager);
         pagerAdapter = new HomePagesAdapter(homePagesCount, getSupportFragmentManager(), weatherPages);
         pager.setAdapter(pagerAdapter);
-
-        //myWeatherService = WeatherService.getService();
-        //myWeatherService.setCity("Penza");
 
         observeDatabase(); // подписываем активити на обновление данных из БД
 

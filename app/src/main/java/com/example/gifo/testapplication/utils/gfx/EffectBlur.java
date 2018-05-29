@@ -11,6 +11,7 @@ import android.support.v8.renderscript.ScriptIntrinsicBlur;
  * Created by gifo on 14.05.2018.
  */
 
+// Графический эффект размытия изображений (Bitmap), используя RenderScript
 public class EffectBlur {
 
     // Параметры по умолчанию

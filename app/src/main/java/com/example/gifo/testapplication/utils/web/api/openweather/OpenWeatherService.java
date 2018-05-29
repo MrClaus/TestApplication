@@ -12,9 +12,13 @@ import retrofit2.Response;
  * Created by gifo on 25.05.2018.
  */
 
+/* Класс OpenWeatherService предоставляет интерфейс OpenWeatherMap API для удобного и доступного
+   получения данных с сервера о погоде */
+
 public class OpenWeatherService {
 
     private static OpenWeatherInterface api = null;
+
     private static OpenWeatherInterface getApi() {
         if (api == null) api  = OpenWeatherClient.getClient().create(OpenWeatherInterface.class);
         return api;

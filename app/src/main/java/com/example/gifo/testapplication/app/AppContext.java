@@ -10,13 +10,13 @@ import android.arch.persistence.room.Room;
 // Контекст текущего приложения
 public class AppContext extends Application {
 
-    private static AppContext context; // контекст приложения
+    private static AppContext base_context; // контекст приложения
     private AppDatabase database; // база данных
 
     @Override
     public void onCreate() {
         super.onCreate();
-        context = this;
+        base_context = this;
         database = Room.databaseBuilder(this, AppDatabase.class, "database").build();
     }
 
@@ -27,6 +27,6 @@ public class AppContext extends Application {
 
     // Возвращает контекст текущего приложения
     public static AppContext getContext() {
-        return context;
+        return base_context;
     }
 }

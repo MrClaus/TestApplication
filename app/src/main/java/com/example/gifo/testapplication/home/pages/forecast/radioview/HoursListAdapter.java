@@ -20,12 +20,12 @@ import java.util.ArrayList;
 
 public class HoursListAdapter extends RecyclerView.Adapter<HoursListAdapter.ViewHolder> {
 
+
     private int parentPosition;
     private int mSelectedItem = 0; // первоначальная выбранная позиция RadioButton из списка view
     private ArrayList<ForecastWeather.HourlyWeather> dataSet;
 
-    // Загружаем из ресурсов xml string-array массив с названиями времени дня (ночь, день, вечер...)
-    String[] day_time_info;
+    String[] day_time_info; // загружаем из ресурсов xml string-array массив с названиями времени дня (ночь, день...)
 
     // listener для общения с MainActivity через интерфейс ForecastRecyclerHourslistInterface
     ForecastRecyclerHourslistInterface someEventListener;

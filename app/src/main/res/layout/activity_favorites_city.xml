@@ -9,7 +9,7 @@
         android:id="@+id/edit_favcity_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Gorod"/>
+        android:hint="@string/forecast_is_city"/>
 
     <Button
         android:id="@+id/add_favcity"

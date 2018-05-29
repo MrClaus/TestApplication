@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 /**
  * Created by gifo on 05.05.2018.
- * I was take as a basis from - https://stackoverflow.com/questions/24422236/
  */
 
 public class SettingsSpinnerAdapter extends ArrayAdapter<String> {

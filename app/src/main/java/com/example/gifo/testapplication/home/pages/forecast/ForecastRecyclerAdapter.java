@@ -28,7 +28,7 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter<ForecastRecycl
     // Родительский контекст MainActivity, который передаём при создании вложенных RecyclerView,
     // который реализует диалог с MainActivity через интерфейс
     private Context parent;
-    private ForecastWeather forecast = null;
+    private boolean isForecast = false;
     private ArrayList<ForecastWeather.DayliWeather> dataSet; // метаданные, на основе которых создаётся и заполняется массив View
 
     private SharedPreferences appSettings; // системные настройки приложения
@@ -87,7 +87,7 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter<ForecastRecycl
     // Заполняем массив View (текущего индекса - position) данными
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (forecast != null) {
+        if (isForecast) {
             // Заполняем лист holder-ов для дальнейшего доступа к нему извне
             if (listHolder.get(position) == null) listHolder.set(position, holder);
 
@@ -134,9 +134,10 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter<ForecastRecycl
     // Вызывается по состоянию обновления данных в БД
     public void refreshFromLiveData(ForecastWeather forecastWeather) {
         dataSet.clear();
-        forecast = forecastWeather;
-        if (dayCountSet == 5) dataSet = forecast.getDayliList();
-        else for (int i = 0; i < dayCountSet; i++) dataSet.add(forecast.getDayliList().get(i));
+        listHolder.clear();
+        isForecast = true;
+        if (dayCountSet == 5) dataSet = forecastWeather.getDayliList(); // погода на 40 часов может включать до 6 дней
+        else for (int i = 0; i < dayCountSet; i++) dataSet.add(forecastWeather.getDayliList().get(i));
         for (int i = 0; i < dataSet.size(); i++) listHolder.add(null);
         notifyDataSetChanged();
     }

@@ -55,6 +55,7 @@ public class ForecastPage extends PageView {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner = view.findViewById(R.id.city_for_forecast);
         spinner.setAdapter(adapter);
+
         int select_pos = 0;
         String select_city = appSettings.getString("SelectCity", "");
         for (int i=0; i<cityesField.length; i++) if (select_city.equals(cityesField[i])) select_pos = i;

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">My Weather</string>
     <string name="menu_item_refresh">Обновить</string>
     <string name="menu_item_settings">Настройки</string>
     <string name="menu_item_exit">Выход</string>
+    <string name="toast_network">Проверьте подключение к интернету</string>
+    <string name="toast_city">Такого города не существует</string>
 
     <string name="weather_for_content">Погода:</string>
 
@@ -11,6 +13,7 @@
     <!-- Settings Activity strings -->
 
     <string name="settings_activity_name">Настройки</string>
+    <string name="settings_activity_bar">Сохранить</string>
     <string name="settings_system">Система</string>
     <string name="settings_system_setlang">Системный язык</string>
     <string name="settings_system_setlang_info">Выберите системный язык для интерфейса</string>

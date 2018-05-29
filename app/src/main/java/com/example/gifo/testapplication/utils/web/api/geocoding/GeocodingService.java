@@ -17,6 +17,7 @@ import retrofit2.Response;
 public class GeocodingService {
 
     private static GeocodingInterface api = null;
+
     private static GeocodingInterface getApi() {
         if (api == null) api  = GeocodingClient.getClient().create(GeocodingInterface.class);
         return api;

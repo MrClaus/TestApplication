@@ -24,6 +24,7 @@ import com.example.gifo.testapplication.settings.favcity.FavoritesCityActivity;
 
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+
     // Инициализируем объекты Preferences для сохранения и чтения настроек
     SharedPreferences appSettings;
     SharedPreferences.Editor appSettingsPut = null;

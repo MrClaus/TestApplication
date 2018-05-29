@@ -6,6 +6,6 @@
         android:id="@+id/action_save"
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_save_24px"
-        android:title="HELLO"/>
+        android:title="@string/settings_activity_bar"/>
 
 </menu>

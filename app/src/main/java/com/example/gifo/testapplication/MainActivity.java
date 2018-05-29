@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.gifo.testapplication.app.AppContext;
 import com.example.gifo.testapplication.app.AppDatabase;
@@ -47,34 +48,37 @@ import kotlin.Pair;
 public class MainActivity extends AppCompatActivity
         implements HoursListAdapter.ForecastRecyclerHourslistInterface,
         ForecastPage.ForecastPageRecyclerInterface,
-        NavigationPage.NavigationPageWeatherInterface {
+        NavigationPage.NavigationPageWeatherInterface,
+        WeatherService.WeatherServiceObserver {
 
     // Инициализируемые параметры экрана устройства в initDisplayParams()
     private float WIDTH;
     private float HEIGHT;
 
     // Инициализируем объект Preferences для чтения настроек
-    SharedPreferences appSettings;
-    SharedPreferences.Editor appSettingsPut;
+    private SharedPreferences appSettings;
+    private SharedPreferences.Editor appSettingsPut;
 
     // Текущее время объекта Date - методы getLastTime, setLastTime, getCurrentTime
     private long currentTimeMs;
 
-    // Переменные объекта ViewPager
-    ViewPager pager;
-    PagerAdapter pagerAdapter;
-    NavigationPage currentWeatherPage = null;
-    RecyclerView forecast = null;
-    ForecastRecyclerAdapter forecastAdapter = null;
-    Spinner forecastSpinner;
+    // Переменные объекта ViewPager и его страниц
+    private ViewPager pager;
+    private PagerAdapter pagerAdapter;
+    private NavigationPage currentWeatherPage = null;
+    private RecyclerView forecast = null;
+    private ForecastRecyclerAdapter forecastAdapter = null;
+    private Spinner forecastSpinner;
 
     public Handler firstRefresh; // хэндлер для проверки состояния готовности элементов активити
-    boolean isFirstRefresh; // данные из SharedPreferences - настройка обновления погоды при старте
+    private boolean isFirstRefresh; // данные из SharedPreferences - настройка обновления погоды при старте
 
     // Переменные объекта GLRippleView
-    volatile GLRippleView glRippleView = null;
-    Thread glRipplePulse = null; // поток обработчик затухания волны
-    float intervalWave = 3000.0f; // время затухания колебаний волны
+    private volatile GLRippleView glRippleView = null;
+    private Thread glRipplePulse = null; // поток обработчик затухания волны
+    private float intervalWave = 3000.0f; // время затухания колебаний волны
+
+    public String INFO; // логгер сообщений для обмена данными между побочными и основным потоками
 
     // Методы для измерения таймаута между операциями
     public long getCurrentTime() { return new Date().getTime(); } // получить текущее время
@@ -112,6 +116,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Обрабатываем выбор секций из списка меню
@@ -120,15 +125,13 @@ public class MainActivity extends AppCompatActivity
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    try {
-                        // Читаем текущий выбранный город из спиннера и обновляем погоду
-                        int pos = forecastSpinner.getSelectedItemPosition();
-                        String[] cityesField = StringArray.getArray(appSettings.getString("CitiesField", ""));
-                        appSettingsPut.putString("SelectCity", cityesField[pos]);
-                        appSettingsPut.apply();
-                        WeatherService.getService().setCity(cityesField[pos]);
-                        WeatherService.getService().refreshData();
-                    } catch (Exception e) {} // Облом с интернетом
+                    // Читаем текущий выбранный город из спиннера и обновляем погоду
+                    int pos = forecastSpinner.getSelectedItemPosition();
+                    String[] cityesField = StringArray.getArray(appSettings.getString("CitiesField", ""));
+                    appSettingsPut.putString("SelectCity", cityesField[pos]);
+                    appSettingsPut.apply();
+                    WeatherService.getService().setCity(cityesField[pos]);
+                    WeatherService.getService().refreshData();
                 }
             }).start();
         }
@@ -174,7 +177,6 @@ public class MainActivity extends AppCompatActivity
                     AnimationUtil.INSTANCE.map(event.getY(), 0f, getHeightDisplay(), -1f, 1f));
             glRippleView.setRipplePoint(pair);
         }
-
         return super.dispatchTouchEvent(event);
     }
 
@@ -204,19 +206,23 @@ public class MainActivity extends AppCompatActivity
         pager.setAdapter(pagerAdapter);
 
         observeDatabase(); // подписываем активити на обновление данных из БД
+        WeatherService.getService().setObserve(this); // подписываем активити на уведомления от WeatherService
 
         // Обновляем погоду - если в настройках прописано - обновлять данные о погоде при старте приложения
         isFirstRefresh = appSettings.getBoolean("FirstRefreshWeather", false);
         firstRefresh = new Handler() {
             @Override
             public void handleMessage(android.os.Message msg) {
-                if ((currentWeatherPage != null) && (forecastAdapter != null) && isFirstRefresh) {
+                if ((currentWeatherPage != null) && (forecastAdapter != null)) {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            try {
+                            if (isFirstRefresh) {
+                                String[] cityesField = StringArray.getArray(appSettings.getString("CitiesField", ""));
+                                String city = cityesField[forecastSpinner.getSelectedItemPosition()];
+                                WeatherService.getService().setCity(city);
                                 WeatherService.getService().refreshData();
-                            } catch (Exception e) {} // Облом с интернетом
+                            }
                         }
                     }).start();
                 }
@@ -268,6 +274,26 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public void onObserveStateWeatherService(int msg) {
+        INFO = "Weather Service Message";
+        switch (msg) {
+            case WEATHER_SERVICE_ERROR_CITY:
+                INFO = MainActivity.this.getResources().getString(R.string.toast_city);
+                break;
+            case WEATHER_SERVICE_ERROR_CONNECTION:
+                INFO = MainActivity.this.getResources().getString(R.string.toast_network);
+                break;
+        }
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this, INFO, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
     // Подписывает текущее ативити на обновление данных в БД приложения
     public void observeDatabase() {
 
@@ -279,8 +305,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onChanged(@Nullable CurrentWeather currentWeather) {
                 if ((currentWeather != null) && (currentWeatherPage != null)) {
-                    SimpleDateFormat formatForDateNow = new SimpleDateFormat("HH:mm / yyyy-MM-dd");
-                    String refresh_date = formatForDateNow.format(new Date());
+                    String refresh_date = appSettings.getString("TimeLastRefreshData", "00:00 / 0000-00-00");
                     int tempSet = appSettings.getInt("TemperatureKey", 0);
                     String temperature =
                             (int) ((tempSet == 0)

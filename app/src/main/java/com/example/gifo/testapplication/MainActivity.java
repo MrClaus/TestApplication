@@ -11,6 +11,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.content.Context;
 import android.graphics.Point;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -68,10 +69,11 @@ public class MainActivity extends AppCompatActivity
     private NavigationPage currentWeatherPage = null;
     private RecyclerView forecast = null;
     private ForecastRecyclerAdapter forecastAdapter = null;
-    private Spinner forecastSpinner;
+    private Spinner forecastSpinner = null;
 
     public Handler firstRefresh; // хэндлер для проверки состояния готовности элементов активити
     private boolean isFirstRefresh; // данные из SharedPreferences - настройка обновления погоды при старте
+    private SwipeRefreshLayout mSwipeRefresh;
 
     // Переменные объекта GLRippleView
     private volatile GLRippleView glRippleView = null;
@@ -121,20 +123,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         // Обрабатываем выбор секций из списка меню
         int id = item.getItemId();
-        if (id == R.id.action_refresh) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    // Читаем текущий выбранный город из спиннера и обновляем погоду
-                    int pos = forecastSpinner.getSelectedItemPosition();
-                    String[] cityesField = StringArray.getArray(appSettings.getString("CitiesField", ""));
-                    appSettingsPut.putString("SelectCity", cityesField[pos]);
-                    appSettingsPut.apply();
-                    WeatherService.getService().setCity(cityesField[pos]);
-                    WeatherService.getService().refreshData();
-                }
-            }).start();
-        }
+        if (id == R.id.action_refresh) refreshWeather();
         if (id == R.id.action_settings) {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
@@ -205,6 +194,27 @@ public class MainActivity extends AppCompatActivity
         pagerAdapter = new HomePagesAdapter(homePagesCount, getSupportFragmentManager(), weatherPages);
         pager.setAdapter(pagerAdapter);
 
+        // Добавляем родительский SwipeRefreshLayout для обновления данных свайпом (сверху вниз)
+        mSwipeRefresh = findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshWeather();
+            }
+        });
+
+        // Решаем конфликт событий pager и mSwipeRefresh
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float v, int i) {}
+            @Override
+            public void onPageSelected(int position) {}
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                mSwipeRefresh.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
+            }
+        });
+
         observeDatabase(); // подписываем активити на обновление данных из БД
         WeatherService.getService().setObserve(this); // подписываем активити на уведомления от WeatherService
 
@@ -213,21 +223,12 @@ public class MainActivity extends AppCompatActivity
         firstRefresh = new Handler() {
             @Override
             public void handleMessage(android.os.Message msg) {
-                if ((currentWeatherPage != null) && (forecastAdapter != null)) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (isFirstRefresh) {
-                                String[] cityesField = StringArray.getArray(appSettings.getString("CitiesField", ""));
-                                String city = cityesField[forecastSpinner.getSelectedItemPosition()];
-                                WeatherService.getService().setCity(city);
-                                WeatherService.getService().refreshData();
-                            }
-                        }
-                    }).start();
+                if ((currentWeatherPage != null) && (forecastAdapter != null) && isFirstRefresh) {
+                    String[] cityesField = StringArray.getArray(appSettings.getString("CitiesField", ""));
+                    String city = cityesField[forecastSpinner.getSelectedItemPosition()];
+                    refreshWeather(city);
                 }
-            };
-        };
+            }};
     }
 
 
@@ -291,6 +292,43 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this, INFO, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+
+    // Запускает обновление данных о погоде (по переданному названию города)
+    public void refreshWeather(String city) {
+        INFO = city;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mSwipeRefresh.setRefreshing(true);
+                    }});
+                WeatherService.getService().setCity(INFO);
+                WeatherService.getService().refreshData();
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mSwipeRefresh.setRefreshing(false);
+                    }});
+            }
+        }).start();
+    }
+
+
+    // Запускает обновление данных о погоде
+    public void refreshWeather() {
+        if (forecastSpinner != null) {
+
+            // Читаем текущий выбранный город из спиннера и обновляем погоду
+            int pos = forecastSpinner.getSelectedItemPosition();
+            String[] cityesField = StringArray.getArray(appSettings.getString("CitiesField", ""));
+            appSettingsPut.putString("SelectCity", cityesField[pos]);
+            appSettingsPut.apply();
+            refreshWeather(cityesField[pos]);
+        }
     }
 
 

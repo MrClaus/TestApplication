@@ -3,6 +3,7 @@ package com.example.gifo.testapplication.settings.favcity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
@@ -41,6 +42,10 @@ public class FavoritesCityActivity
         super.onCreate(savedInstanceState);
         setTitle(R.string.favorites_city_activity_name);
         setContentView(R.layout.activity_favorites_city);
+
+        // Добавляем тулбар
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Добавляем и показываем в экшен-баре стрелку 'назад'
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

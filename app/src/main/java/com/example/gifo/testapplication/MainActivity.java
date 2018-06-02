@@ -7,13 +7,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.content.Context;
 import android.graphics.Point;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -51,6 +55,8 @@ public class MainActivity extends AppCompatActivity
         ForecastPage.ForecastPageRecyclerInterface,
         NavigationPage.NavigationPageWeatherInterface,
         WeatherService.WeatherServiceObserver {
+
+    DrawerLayout mDrawerLayout;
 
     // Инициализируемые параметры экрана устройства в initDisplayParams()
     private float WIDTH;
@@ -123,6 +129,10 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         // Обрабатываем выбор секций из списка меню
         int id = item.getItemId();
+        if (id == android.R.id.home) { // ссылается на DrawerLayout
+            mDrawerLayout.openDrawer(GravityCompat.START);
+            return true;
+        }
         if (id == R.id.action_refresh) refreshWeather();
         if (id == R.id.action_settings) {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
@@ -175,6 +185,14 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(null);
         setContentView(R.layout.activity_main);
         initDisplayParams(this);
+
+        // Добавляем DrawerLayout, тулбар и ставим иконку DrawerLayout в тулбар
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
         // appSettings - объект Preferences для чтения настроек
         appSettings = this.getSharedPreferences("main", Context.MODE_PRIVATE);

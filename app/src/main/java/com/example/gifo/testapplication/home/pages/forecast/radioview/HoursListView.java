@@ -42,6 +42,7 @@ public class HoursListView {
         // Ставим на горизонтальную прокрутку
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setHasFixedSize(true);
 
         // Даём шанс скроллиться вложенному текущему RecyclerView в родительский RecyclerView
         recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {

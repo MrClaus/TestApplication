@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -91,6 +92,10 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setTitle(R.string.settings_activity_name);
         setContentView(R.layout.activity_settings);
+
+        // Добавляем тулбар
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Добавляем и показываем в экшен-баре стрелку 'назад'
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
